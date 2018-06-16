@@ -73,6 +73,10 @@ class Preferences(context: Context) {
             .apply()
     }
 
+    fun getAllSorted(): List<Pair<String, *>> {
+        return preferences.all.toSortedMap(compareBy<String> { it.length }.thenBy { it }).toList()
+    }
+
     private fun <T> toString(value: T): String {
         return if (String::class.java.isInstance(value)) (value as String).trim() else value.toString()
     }
