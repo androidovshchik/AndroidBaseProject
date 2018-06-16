@@ -3,7 +3,7 @@
 
 [![Release](https://jitpack.io/v/androidovshchik/BaseProject.svg)](https://jitpack.io/#androidovshchik/BaseProject)
 <a href="https://www.paypal.me/mrcpp" title="Donate to this project using Paypal">
-    <img src="https://img.shields.io/badge/paypal-donate-green.svg" alt="PayPal donate button" height="18"/>
+    <img src="https://img.shields.io/badge/paypal-donate-green.svg" alt="PayPal donate button"/>
 </a>
 
 Add it to your build.gradle with:
@@ -20,6 +20,6 @@ and:
 
 ```gradle
 dependencies {
-    implementation 'com.github.androidovshchik:BaseProject:1.0'
+    implementation 'com.github.androidovshchik:BaseProject:LATEST_VERSION'
 }
 ```
