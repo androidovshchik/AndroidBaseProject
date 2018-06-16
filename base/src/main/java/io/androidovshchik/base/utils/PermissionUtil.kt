@@ -8,12 +8,17 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.support.v4.content.ContextCompat
 import com.karumi.dexter.Dexter
+import com.karumi.dexter.MultiplePermissionsReport
+import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.PermissionRequest
+import com.karumi.dexter.listener.multi.CompositeMultiplePermissionsListener
 import com.karumi.dexter.listener.multi.DialogOnAnyDeniedMultiplePermissionsListener
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import io.androidovshchik.base.R
+import io.reactivex.Observable
+import io.reactivex.ObservableEmitter
 
 object PermissionUtil {
-
-    private const val REQUEST_PERMISSIONS = 2018
 
     fun allPermissions(context: Context): Array<String> {
         return context.packageManager.getPackageInfo(context.packageName,
@@ -34,16 +39,35 @@ object PermissionUtil {
         return true
     }
 
-    fun request(activity: Activity, vararg permissions: String) {
-        Dexter.withActivity(activity)
-            .withPermissions(*permissions)
-            .withListener(DialogOnAnyDeniedMultiplePermissionsListener.Builder
-                .withContext(activity.applicationContext)
+    fun request(activity: Activity, vararg permissions: String): Observable<Boolean> {
+        return Observable.create { emitter: ObservableEmitter<Boolean> ->
+            if (emitter.isDisposed) {
+                return@create
+            }
+            val resultListener = object : MultiplePermissionsListener {
+
+                override fun onPermissionsChecked(report: MultiplePermissionsReport) {
+                    emitter.onNext(report.areAllPermissionsGranted())
+                    emitter.onComplete()
+                }
+
+                override fun onPermissionRationaleShouldBeShown(permissions: List<PermissionRequest>,
+                                                                token: PermissionToken) {
+                    token.continuePermissionRequest()
+                }
+            }
+            val dialogListener = DialogOnAnyDeniedMultiplePermissionsListener.Builder
+                .withContext(activity)
                 .withTitle(R.string.permission_title)
                 .withMessage(R.string.permission_message)
-                .withButtonText(R.string.permission_button)
-                .build())
-            .onSameThread()
-            .check()
+                .withButtonText(android.R.string.ok)
+                .build()
+            val listeners = CompositeMultiplePermissionsListener(resultListener, dialogListener)
+            Dexter.withActivity(activity)
+                .withPermissions(*permissions)
+                .withListener(listeners)
+                .onSameThread()
+                .check()
+        }
     }
 }

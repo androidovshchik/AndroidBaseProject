@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import io.androidovshchik.base.BaseAppCompatActivity
 import io.androidovshchik.base.utils.PermissionUtil
+import timber.log.Timber
 
 class MainActivity : BaseAppCompatActivity() {
 
@@ -12,5 +13,8 @@ class MainActivity : BaseAppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         PermissionUtil.request(this, *PermissionUtil.allPermissions(applicationContext))
+            .subscribe {
+                Timber.d("GRANTED: $it")
+            }
     }
 }

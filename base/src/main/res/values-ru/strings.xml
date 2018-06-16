@@ -2,7 +2,6 @@
 <resources>
     <string name="permission_title">Требуются разрешения</string>
     <string name="permission_message">Необходимо их предоставить через настройки приложения</string>
-    <string name="permission_button">Настройки</string>
     <string name="error_crash">Произошла ошибка, отправьте, пожалуйста, письмо разработчику для решения проблемы</string>
     <string name="error_comment">И если не затруднит, добавьте пару слов о случившемся</string>
 </resources>
