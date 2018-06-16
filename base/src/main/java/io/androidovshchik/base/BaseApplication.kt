@@ -15,7 +15,7 @@ open class BaseApplication: Application() {
         if (ACRA.isACRASenderServiceProcess()) {
             return
         }
-        ACRAUtil.init(this)
+        ACRAUtil.init(this, R.style.LibraryTheme_Dialog)
         preferences = Preferences(applicationContext)
     }
 }

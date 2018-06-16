@@ -6,7 +6,7 @@ import io.androidovshchik.base.utils.ACRAUtil
 import org.acra.ACRA
 
 @Suppress("MemberVisibilityCanBePrivate")
-open class BaseMultiDexApplication: MultiDexApplication() {
+open class BaseAppCompatMultiDexApplication: MultiDexApplication() {
 
     protected lateinit var preferences: Preferences
 
@@ -15,7 +15,7 @@ open class BaseMultiDexApplication: MultiDexApplication() {
         if (ACRA.isACRASenderServiceProcess()) {
             return
         }
-        ACRAUtil.init(this, R.style.LibraryTheme_Dialog)
+        ACRAUtil.init(this, R.style.LibrarySupportTheme_Dialog)
         preferences = Preferences(applicationContext)
     }
 }

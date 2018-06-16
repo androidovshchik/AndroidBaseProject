@@ -3,6 +3,7 @@
 package io.androidovshchik.base.utils
 
 import android.app.Application
+import android.support.annotation.StyleRes
 import io.androidovshchik.base.R
 import org.acra.ACRA
 import org.acra.ReportField
@@ -11,11 +12,11 @@ import org.acra.config.ConfigurationBuilder
 
 object ACRAUtil {
 
-    fun init(application: Application) {
+    fun init(application: Application, @StyleRes theme: Int) {
         ACRA.init(application, ConfigurationBuilder(application)
             .setMailTo("vladkalyuzhnyu@gmail.com")
             .setReportingInteractionMode(ReportingInteractionMode.DIALOG)
-            .setResDialogTheme(R.style.AppTheme_Dialog)
+            .setResDialogTheme(theme)
             .setResDialogText(R.string.error_crash)
             .setResDialogCommentPrompt(R.string.error_comment)
             .setCustomReportContent(
