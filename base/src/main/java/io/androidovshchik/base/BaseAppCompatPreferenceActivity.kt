@@ -38,14 +38,6 @@ abstract class BaseAppCompatPreferenceActivity : PreferenceActivity() {
         getDelegate().onPostResume()
     }
 
-    fun getSupportActionBar(): ActionBar? {
-        return getDelegate().supportActionBar
-    }
-
-    override fun getMenuInflater(): MenuInflater {
-        return getDelegate().menuInflater
-    }
-
     override fun setContentView(@LayoutRes layoutResID: Int) {
         getDelegate().setContentView(layoutResID)
     }
@@ -67,9 +59,17 @@ abstract class BaseAppCompatPreferenceActivity : PreferenceActivity() {
         getDelegate().setTitle(title)
     }
 
+    fun getSupportActionBar(): ActionBar? {
+        return getDelegate().supportActionBar
+    }
+
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
         getDelegate().onConfigurationChanged(newConfig)
+    }
+
+    override fun getMenuInflater(): MenuInflater {
+        return getDelegate().menuInflater
     }
 
     override fun invalidateOptionsMenu() {

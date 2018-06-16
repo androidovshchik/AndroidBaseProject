@@ -16,7 +16,7 @@ object NotificationUtil {
     private const val NOISY_CHANNEL_ID = "noisy_channel"
     private const val QUITE_CHANNEL_ID = "quite_channel"
 
-    fun buildSilent(context: Context, title: String, @DrawableRes icon: Int): Notification {
+    fun makeSilent(context: Context, title: String, @DrawableRes icon: Int): Notification {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             manager.createNotificationChannel(NotificationChannel(QUITE_CHANNEL_ID,

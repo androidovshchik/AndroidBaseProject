@@ -39,7 +39,7 @@ abstract class BaseForegroundService : Service() {
     }
 
     protected fun startForeground(id: Int, title: String, @DrawableRes icon: Int) {
-        startForeground(id, NotificationUtil.buildSilent(applicationContext, title, icon))
+        startForeground(id, NotificationUtil.makeSilent(applicationContext, title, icon))
     }
 
     protected fun stopWork() {
