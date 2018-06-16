@@ -1,6 +1,6 @@
 @file:Suppress("unused")
 
-package io.androidovshchik.baseproject.utils
+package io.androidovshchik.base.utils
 
 import android.text.InputFilter
 import android.widget.TextView

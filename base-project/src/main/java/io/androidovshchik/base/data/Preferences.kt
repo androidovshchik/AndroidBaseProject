@@ -1,4 +1,4 @@
-package io.androidovshchik.baseproject.data
+package io.androidovshchik.base.data
 
 import android.content.Context
 import android.content.SharedPreferences

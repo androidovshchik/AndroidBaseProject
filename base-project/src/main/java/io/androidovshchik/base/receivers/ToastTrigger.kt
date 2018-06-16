@@ -1,4 +1,4 @@
-package io.androidovshchik.baseproject.receivers
+package io.androidovshchik.base.receivers
 
 import android.content.BroadcastReceiver
 import android.content.Context

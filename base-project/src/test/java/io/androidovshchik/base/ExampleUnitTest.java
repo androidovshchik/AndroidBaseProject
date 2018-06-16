@@ -1,4 +1,4 @@
-package io.androidovshchik.baseproject;
+package io.androidovshchik.base;
 
 import org.junit.Test;
 

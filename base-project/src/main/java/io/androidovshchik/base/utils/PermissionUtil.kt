@@ -1,6 +1,6 @@
 @file:Suppress("MemberVisibilityCanBePrivate", "unused")
 
-package io.androidovshchik.baseproject.utils
+package io.androidovshchik.base.utils
 
 import android.content.Context
 import android.content.pm.PackageManager
@@ -8,7 +8,7 @@ import android.support.v4.content.ContextCompat
 import android.os.Build
 import com.nabinbhandari.android.permissions.PermissionHandler
 import com.nabinbhandari.android.permissions.Permissions
-import io.androidovshchik.baseproject.R
+import io.androidovshchik.base.R
 import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
 

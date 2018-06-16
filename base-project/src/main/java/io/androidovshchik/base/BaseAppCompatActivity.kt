@@ -1,10 +1,10 @@
-package io.androidovshchik.baseproject
+package io.androidovshchik.base
 
-import android.app.Activity
+import android.support.v7.app.AppCompatActivity
 import io.reactivex.disposables.CompositeDisposable
 
 @Suppress("MemberVisibilityCanBePrivate")
-abstract class BaseActivity : Activity() {
+abstract class BaseAppCompatActivity : AppCompatActivity() {
 
     protected val disposable = CompositeDisposable()
 

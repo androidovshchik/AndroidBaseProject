@@ -1,4 +1,4 @@
-package io.androidovshchik.baseproject
+package io.androidovshchik.base
 
 import android.annotation.SuppressLint
 import android.app.Service
@@ -7,9 +7,9 @@ import android.content.Intent
 import android.os.IBinder
 import android.os.PowerManager
 import android.support.annotation.DrawableRes
-import io.androidovshchik.baseproject.data.Preferences
-import io.androidovshchik.baseproject.receivers.ToastTrigger
-import io.androidovshchik.baseproject.utils.NotificationUtil
+import io.androidovshchik.base.data.Preferences
+import io.androidovshchik.base.receivers.ToastTrigger
+import io.androidovshchik.base.utils.NotificationUtil
 import io.reactivex.disposables.CompositeDisposable
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")

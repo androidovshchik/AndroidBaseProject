@@ -1,4 +1,4 @@
-package io.androidovshchik.baseproject;
+package io.androidovshchik.base;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

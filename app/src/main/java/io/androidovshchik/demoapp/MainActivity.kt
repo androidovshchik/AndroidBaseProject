@@ -2,8 +2,8 @@ package io.androidovshchik.demoapp
 
 import android.os.Bundle
 import android.util.Log
-import io.androidovshchik.baseproject.BaseAppCompatActivity
-import io.androidovshchik.baseproject.utils.PermissionsUtil
+import io.androidovshchik.base.BaseAppCompatActivity
+import io.androidovshchik.base.utils.PermissionUtil
 
 class MainActivity : BaseAppCompatActivity() {
 
@@ -11,7 +11,7 @@ class MainActivity : BaseAppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //Log.d("sa", PermissionsUtil.getPermissions(applicationContext).toString())
-        PermissionsUtil.request(applicationContext, *PermissionsUtil.allPermissions(applicationContext))
+        PermissionUtil.request(applicationContext, *PermissionUtil.allPermissions(applicationContext))
             .subscribe {
                 Log.d("it", "RESULT " + it)
             }

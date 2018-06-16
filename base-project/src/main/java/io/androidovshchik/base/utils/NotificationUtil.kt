@@ -1,6 +1,6 @@
 @file:Suppress("unused")
 
-package io.androidovshchik.baseproject.utils
+package io.androidovshchik.base.utils
 
 import android.app.Notification
 import android.app.NotificationChannel
@@ -9,7 +9,7 @@ import android.content.Context
 import android.os.Build
 import android.support.v4.app.NotificationCompat
 import android.support.annotation.DrawableRes
-import io.androidovshchik.baseproject.R
+import io.androidovshchik.base.R
 
 object NotificationUtil {
 
