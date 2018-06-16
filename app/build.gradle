@@ -15,8 +15,14 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        presentation {
+            initWith(buildTypes.release)
+            useProguard true
+        }
         release {
-            minifyEnabled false
+            shrinkResources true
+            minifyEnabled true
+            useProguard false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
