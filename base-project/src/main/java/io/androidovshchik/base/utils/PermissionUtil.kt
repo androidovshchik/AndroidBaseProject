@@ -6,13 +6,15 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.support.v4.content.ContextCompat
 import android.os.Build
-import com.nabinbhandari.android.permissions.PermissionHandler
-import com.nabinbhandari.android.permissions.Permissions
-import io.androidovshchik.base.R
-import io.reactivex.Observable
-import io.reactivex.ObservableEmitter
+import android.app.Activity
+import android.support.v4.app.ActivityCompat
+import android.support.v7.app.AppCompatActivity
+import io.androidovshchik.base.dialogs.RationaleDialog
+import io.androidovshchik.base.dialogs.RationaleSupportDialog
 
 object PermissionUtil {
+
+    private const val REQUEST_PERMISSIONS = 2018
 
     fun allPermissions(context: Context): Array<String> {
         return context.packageManager.getPackageInfo(context.packageName,
@@ -33,33 +35,20 @@ object PermissionUtil {
         return true
     }
 
-    fun request(context: Context, vararg permissions: String): Observable<Boolean> {
-        return Observable.create { emitter: ObservableEmitter<Boolean> ->
-            if (emitter.isDisposed) {
-                return@create
+    @Suppress("DEPRECATION")
+    fun request(activity: Activity, finishActivity: Boolean, vararg permissions: String) {
+        for (permission in permissions) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(activity, permission)) {
+                if (activity is AppCompatActivity) {
+                    RationaleSupportDialog.newInstance(finishActivity)
+                        .show(activity.supportFragmentManager, "dialog")
+                } else {
+                    RationaleDialog.newInstance(finishActivity)
+                        .show(activity.fragmentManager, "dialog")
+                }
+                return
             }
-            val title = context.getString(R.string.settings_title)
-            Permissions.check(context, permissions, null,
-                Permissions.Options().setSettingsDialogMessage(context.getString(R.string.settings_message))
-                    .setSettingsText(context.getString(R.string.settings))
-                    .setSettingsDialogTitle(title)
-                    .setRationaleDialogTitle(title), object : PermissionHandler() {
-
-                override fun onGranted() {
-                    emitter.onNext(true)
-                    emitter.onComplete()
-                }
-
-                override fun onBlocked(context: Context?, blockedList: ArrayList<String>?): Boolean {
-                    onDenied(context, blockedList)
-                    return false
-                }
-
-                override fun onDenied(context: Context?, deniedPermissions: ArrayList<String>?) {
-                    emitter.onNext(false)
-                    emitter.onComplete()
-                }
-            })
         }
+        ActivityCompat.requestPermissions(activity, permissions, REQUEST_PERMISSIONS)
     }
 }
