@@ -6,7 +6,7 @@ import io.androidovshchik.base.data.Preferences
 import io.reactivex.disposables.CompositeDisposable
 
 @Suppress("MemberVisibilityCanBePrivate")
-abstract class BasePreferenceActivity : PreferenceActivity() {
+open class BasePreferenceActivity : PreferenceActivity() {
 
     protected val disposable = CompositeDisposable()
 

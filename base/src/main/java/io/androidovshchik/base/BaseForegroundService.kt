@@ -13,7 +13,7 @@ import io.androidovshchik.base.utils.NotificationUtil
 import io.reactivex.disposables.CompositeDisposable
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
-abstract class BaseForegroundService : Service() {
+open class BaseForegroundService : Service() {
 
     private var wakeLock: PowerManager.WakeLock? = null
 

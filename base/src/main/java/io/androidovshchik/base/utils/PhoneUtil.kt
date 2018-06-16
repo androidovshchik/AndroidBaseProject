@@ -15,9 +15,24 @@ object PhoneUtil {
 
     fun sendSMS(context: Context, phone: String, text: String) {
         if (!BuildConfig.DEBUG) {
-            val intent = PendingIntent.getActivity(context, 0, Intent(), 0)
-            SmsManager.getDefault()
-                .sendTextMessage(phone, null, text, intent, null)
+            try {
+                val intent = PendingIntent.getActivity(context, 0, Intent(), 0)
+                SmsManager.getDefault()
+                    .sendTextMessage(phone, null, text, intent, null)
+            } catch (e: SecurityException) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    fun makeCall(context: Context, number: String) {
+        try {
+            val intent = Intent(Intent.ACTION_CALL, toUri(number))
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            context.startActivity(intent)
+        } catch (e: SecurityException) {
+            e.printStackTrace()
         }
     }
 
@@ -41,17 +56,6 @@ object PhoneUtil {
             return false
         }
         return true
-    }
-
-    @SuppressLint("MissingPermission")
-    fun makeCall(context: Context, number: String) {
-        try {
-            val intent = Intent(Intent.ACTION_CALL, toUri(number))
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            context.startActivity(intent)
-        } catch (e: SecurityException) {
-            e.printStackTrace()
-        }
     }
 
     private fun toUri(phone: String): Uri {

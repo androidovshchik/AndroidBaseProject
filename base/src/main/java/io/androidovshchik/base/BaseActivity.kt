@@ -4,7 +4,7 @@ import android.app.Activity
 import io.reactivex.disposables.CompositeDisposable
 
 @Suppress("MemberVisibilityCanBePrivate")
-abstract class BaseActivity : Activity() {
+open class BaseActivity : Activity() {
 
     protected val disposable = CompositeDisposable()
 
