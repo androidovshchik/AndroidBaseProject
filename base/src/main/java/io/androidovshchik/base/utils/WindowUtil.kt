@@ -8,6 +8,7 @@ import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.view.Display
 import android.os.Build
+import timber.log.Timber
 
 object WindowUtil {
 
@@ -30,7 +31,7 @@ object WindowUtil {
                 size.y = methodGetRawHeight.invoke(manager.defaultDisplay) as Int
                 size.x = methodGetRawWidth.invoke(manager.defaultDisplay) as Int
             } catch (e: Exception) {
-                e.printStackTrace()
+                Timber.e(e)
             }
         }
         return size

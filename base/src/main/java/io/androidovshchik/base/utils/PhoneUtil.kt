@@ -9,18 +9,18 @@ import android.content.Intent
 import android.net.Uri
 import android.telephony.SmsManager
 import android.telephony.TelephonyManager
-import io.androidovshchik.base.BuildConfig
+import timber.log.Timber
 
 object PhoneUtil {
 
     fun sendSMS(context: Context, phone: String, text: String) {
-        if (!BuildConfig.DEBUG) {
+        if (!AppUtil.isDebug()) {
             try {
                 val intent = PendingIntent.getActivity(context, 0, Intent(), 0)
                 SmsManager.getDefault()
                     .sendTextMessage(phone, null, text, intent, null)
             } catch (e: SecurityException) {
-                e.printStackTrace()
+                Timber.e(e)
             }
         }
     }
@@ -52,7 +52,7 @@ object PhoneUtil {
             methodEndCall.invoke(telephonyInterface)
         } catch (e: Exception) {
             // Many things can go wrong with reflection calls
-            e.printStackTrace()
+            Timber.e(e)
             return false
         }
         return true
