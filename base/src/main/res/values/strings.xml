@@ -3,4 +3,6 @@
     <string name="permission_title">Permissions required</string>
     <string name="permission_message">Please provide permission(s) from settings page of app</string>
     <string name="permission_button">Settings</string>
+    <string name="error_crash">An error occurred, please send a letter to the developer to solve the problem</string>
+    <string name="error_comment">You can also add a few words about what was happened</string>
 </resources>
