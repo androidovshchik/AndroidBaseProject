@@ -1,5 +1,5 @@
 <resources>
-    <string name="library_name">BaseProject</string>
+    <string name="library_name" translatable="false">BaseProject</string>
     <string name="settings">Settings</string>
     <string name="settings_title">Permissions required</string>
     <string name="settings_message">Required permission(s) have been set not to ask again! Please provide them from settings.</string>
