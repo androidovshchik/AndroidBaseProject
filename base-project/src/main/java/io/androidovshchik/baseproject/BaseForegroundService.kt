@@ -9,9 +9,10 @@ import android.os.PowerManager
 import android.support.annotation.DrawableRes
 import io.androidovshchik.baseproject.data.Preferences
 import io.androidovshchik.baseproject.receivers.ToastTrigger
+import io.androidovshchik.baseproject.utils.NotificationUtil
 import io.reactivex.disposables.CompositeDisposable
 
-@Suppress("MemberVisibilityCanBePrivate")
+@Suppress("MemberVisibilityCanBePrivate", "unused")
 abstract class BaseForegroundService : Service() {
 
     private var wakeLock: PowerManager.WakeLock? = null
@@ -37,8 +38,8 @@ abstract class BaseForegroundService : Service() {
         return Service.START_NOT_STICKY
     }
 
-    protected fun startForeground(id: Int, title: String, @DrawableRes image: Int) {
-        startForeground(id, builder.build())
+    protected fun startForeground(id: Int, title: String, @DrawableRes icon: Int) {
+        startForeground(id, NotificationUtil.buildSilent(applicationContext, title, icon))
     }
 
     protected fun stopWork() {
@@ -46,9 +47,8 @@ abstract class BaseForegroundService : Service() {
         stopSelf()
     }
 
-    fun showToast(message: String) {
-        val intent = Intent()
-        intent.action = "$packageName.TOAST"
+    protected fun showToast(message: String) {
+        val intent = Intent(applicationContext, ToastTrigger::class.java)
         intent.putExtra(ToastTrigger.EXTRA_MESSAGE, message)
         sendBroadcast(intent)
     }

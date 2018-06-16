@@ -12,7 +12,7 @@ import io.androidovshchik.baseproject.R
 import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
 
-object PermissionsUtil {
+object PermissionUtil {
 
     fun allPermissions(context: Context): Array<String> {
         return context.packageManager.getPackageInfo(context.packageName,
