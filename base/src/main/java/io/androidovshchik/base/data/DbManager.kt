@@ -30,7 +30,7 @@ open class DbManager {
     @SuppressLint("LogNotTimber")
     fun openDb(context: Context, dbName: String, version: Int): Boolean {
         closeDb()
-        val dbCallback = DbCallback(version)
+        val dbCallback = DbCallback(version, dbName)
         dbCallback.openDatabase(context)
         val configuration = SupportSQLiteOpenHelper.Configuration.builder(context)
             .name(dbName)
