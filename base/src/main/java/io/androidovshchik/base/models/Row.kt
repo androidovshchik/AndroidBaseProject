@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package io.androidovshchik.base.models
 
 import android.content.ContentValues
