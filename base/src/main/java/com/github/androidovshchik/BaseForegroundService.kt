@@ -13,7 +13,7 @@ import com.github.androidovshchik.utils.NotificationUtil
 import io.reactivex.disposables.CompositeDisposable
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
-open class BaseForegroundService : Service() {
+abstract class BaseForegroundService : Service() {
 
     private var wakeLock: PowerManager.WakeLock? = null
 
@@ -42,15 +42,17 @@ open class BaseForegroundService : Service() {
         startForeground(id, NotificationUtil.makeSilent(applicationContext, title, icon))
     }
 
-    protected fun stopWork() {
-        stopForeground(true)
-        stopSelf()
-    }
+    protected abstract fun hasConditions(): Boolean
 
     protected fun showToast(message: String) {
         val intent = Intent(applicationContext, ToastTrigger::class.java)
         intent.putExtra(ToastTrigger.EXTRA_MESSAGE, message)
         sendBroadcast(intent)
+    }
+
+    protected fun stopWork() {
+        stopForeground(true)
+        stopSelf()
     }
 
     override fun onDestroy() {

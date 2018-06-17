@@ -13,6 +13,18 @@ import timber.log.Timber
 
 object PhoneUtil {
 
+    @Suppress("DEPRECATION")
+    @SuppressLint("MissingPermission", "HardwareIds")
+    fun imei(context: Context): String? {
+        try {
+            val manager = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+            return manager.deviceId
+        } catch (e: SecurityException) {
+            Timber.e(e)
+        }
+        return null
+    }
+
     fun sendSMS(context: Context, phone: String, text: String) {
         if (!AppUtil.isDebug()) {
             try {
