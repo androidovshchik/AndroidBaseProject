@@ -2,8 +2,8 @@ package io.androidovshchik.demo
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import io.androidovshchik.base.BaseAppCompatActivity
-import io.androidovshchik.base.utils.PermissionUtil
+import com.github.androidovshchik.BaseAppCompatActivity
+import com.github.androidovshchik.utils.PermissionUtil
 import timber.log.Timber
 
 class MainActivity : BaseAppCompatActivity() {
