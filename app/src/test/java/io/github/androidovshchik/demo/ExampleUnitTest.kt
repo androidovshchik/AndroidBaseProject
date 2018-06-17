@@ -1,4 +1,4 @@
-package io.androidovshchik.demo
+package io.github.androidovshchik.demo
 
 import org.junit.Test
 

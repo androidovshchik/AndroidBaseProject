@@ -1,4 +1,4 @@
-package io.androidovshchik.demo
+package io.github.androidovshchik.demo
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4

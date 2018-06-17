@@ -12,7 +12,9 @@ import org.acra.ACRA
 import timber.log.Timber
 
 @Suppress("MemberVisibilityCanBePrivate")
-open class BaseAppCompatMultiDexApplication: MultiDexApplication() {
+abstract class BaseAppCompatMultiDexApplication: MultiDexApplication() {
+
+    abstract val sandbox: Boolean
 
     protected lateinit var preferences: Preferences
 
