@@ -5,6 +5,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'com.github.dcendents.android-maven'
+
 group = 'com.github.androidovshchik'
 
 android {
@@ -20,21 +21,14 @@ android {
         debug {
             java.srcDirs = ['src/main/java', 'src/debug/java']
         }
-        presentation {
-            java.srcDirs = ['src/main/java', 'src/release/java']
-        }
         release {
             java.srcDirs = ['src/main/java', 'src/release/java']
         }
     }
     buildTypes {
-        presentation {
-            initWith(buildTypes.release)
-            useProguard true
-        }
         release {
             minifyEnabled true
-            useProguard false
+            useProguard true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -42,7 +36,6 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    publishNonDefault true
 }
 
 dependencies {
