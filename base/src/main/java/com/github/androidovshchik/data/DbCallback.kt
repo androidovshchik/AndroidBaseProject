@@ -13,7 +13,7 @@ open class DbCallback(val version: Int, private val dbName: String): SupportSQLi
 
     override fun onUpgrade(db: SupportSQLiteDatabase, oldVersion: Int, newVersion: Int) {}
 
-    fun openDatabase(context: Context) {
+    fun openAssetsDatabase(context: Context) {
         val file = context.getDatabasePath(dbName)
         if (!file.exists()) {
             try {

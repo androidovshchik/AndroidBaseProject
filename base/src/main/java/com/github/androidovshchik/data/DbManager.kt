@@ -2,17 +2,14 @@
 
 package com.github.androidovshchik.data
 
-import android.annotation.SuppressLint
 import android.arch.persistence.db.SupportSQLiteOpenHelper
 import android.arch.persistence.db.framework.FrameworkSQLiteOpenHelperFactory
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
-import android.util.Log
 import com.squareup.sqlbrite3.BriteDatabase
 import com.squareup.sqlbrite3.SqlBrite
 import com.github.androidovshchik.models.Row
-import com.github.androidovshchik.utils.AppUtil
 import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
 import io.reactivex.ObservableOnSubscribe
@@ -20,29 +17,20 @@ import io.reactivex.schedulers.Schedulers
 
 open class DbManager {
 
-    companion object {
-
-        private const val TAG = "DbManager"
-    }
-
     var db: BriteDatabase? = null
 
-    @SuppressLint("LogNotTimber")
-    fun openDb(context: Context, dbName: String, version: Int): Boolean {
+    fun openAssetsDb(context: Context, dbName: String, version: Int) {
         closeDb()
         val dbCallback = DbCallback(version, dbName)
-        dbCallback.openDatabase(context)
-        val configuration = SupportSQLiteOpenHelper.Configuration.builder(context)
-            .name(dbName)
-            .callback(dbCallback)
-            .build()
+        dbCallback.openAssetsDatabase(context)
         db = SqlBrite.Builder()
-            .logger { message: String -> Log.v(TAG, message) }
             .build()
             .wrapDatabaseHelper(FrameworkSQLiteOpenHelperFactory()
-                .create(configuration), Schedulers.io())
-        db!!.setLoggingEnabled(AppUtil.isDebug())
-        return true
+                .create(SupportSQLiteOpenHelper.Configuration
+                    .builder(context)
+                    .name(dbName)
+                    .callback(dbCallback)
+                    .build()), Schedulers.io())
     }
 
     fun onExecSql(sql: String): Observable<Boolean> {
