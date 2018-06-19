@@ -6,15 +6,14 @@ import android.support.multidex.MultiDexApplication
 import android.text.TextUtils
 import com.github.androidovshchik.data.Preferences
 import com.github.androidovshchik.utils.ACRAUtil
-import com.github.androidovshchik.utils.AppUtil
 import com.github.androidovshchik.utils.StethoUtil
 import org.acra.ACRA
 import timber.log.Timber
 
-@Suppress("MemberVisibilityCanBePrivate")
+@Suppress("MemberVisibilityCanBePrivate", "NON_EXHAUSTIVE_WHEN")
 abstract class BaseAppCompatMultiDexApplication: MultiDexApplication() {
 
-    abstract val sandbox: Boolean
+    abstract val environment: Environment
 
     protected lateinit var preferences: Preferences
 
@@ -23,13 +22,20 @@ abstract class BaseAppCompatMultiDexApplication: MultiDexApplication() {
         if (ACRA.isACRASenderServiceProcess()) {
             return
         }
-        if (AppUtil.isDebug()) {
-            StethoUtil.init(applicationContext)
-        } else {
-            ACRAUtil.init(this, R.style.LibraryTheme_Dialog)
+        when {
+            environment != Environment.PRODUCTION -> {
+                Timber.plant(Timber.DebugTree())
+            }
         }
-        if (!AppUtil.isRelease()) {
-            Timber.plant(Timber.DebugTree())
+        when (environment) {
+            Environment.DEVELOP -> {
+                StethoUtil.init(applicationContext)
+            }
+        }
+        when (environment) {
+            Environment.SANDBOX -> {
+                ACRAUtil.init(this, R.style.LibraryTheme_Dialog)
+            }
         }
         preferences = Preferences(applicationContext)
         Timber.d(TextUtils.join(System.getProperty("line.separator"), preferences.getAllSorted()))

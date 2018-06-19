@@ -26,14 +26,12 @@ object PhoneUtil {
     }
 
     fun sendSMS(context: Context, phone: String, text: String) {
-        if (!AppUtil.isDebug()) {
-            try {
-                val intent = PendingIntent.getActivity(context, 0, Intent(), 0)
-                SmsManager.getDefault()
-                    .sendTextMessage(phone, null, text, intent, null)
-            } catch (e: SecurityException) {
-                Timber.e(e)
-            }
+        try {
+            val intent = PendingIntent.getActivity(context, 0, Intent(), 0)
+            SmsManager.getDefault()
+                .sendTextMessage(phone, null, text, intent, null)
+        } catch (e: SecurityException) {
+            Timber.e(e)
         }
     }
 
