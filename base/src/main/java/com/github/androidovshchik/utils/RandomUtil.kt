@@ -26,7 +26,8 @@ object RandomUtil {
 
     fun nextString(range: IntRange, chars: String): String {
         var output = ""
-        for (i in range) {
+        val size = nextIntInclusive(range)
+        for (i in 0 until size) {
             output += chars[Math.floor(Math.random() * chars.length).toInt()]
         }
         return output
