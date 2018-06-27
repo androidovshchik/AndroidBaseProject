@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
 import android.os.IBinder
+import com.github.androidovshchik.utils.ServiceUtil
 
 @Suppress("MemberVisibilityCanBePrivate")
 abstract class BaseACBActivity<S: BaseFBService> : BaseACActivity() {
@@ -16,8 +17,9 @@ abstract class BaseACBActivity<S: BaseFBService> : BaseACActivity() {
     override fun onStart() {
         super.onStart()
         if (serviceClass != null) {
+            ServiceUtil.stopService(applicationContext, serviceClass!!)
             val intent = Intent(applicationContext, serviceClass)
-            startService(intent)
+            ServiceUtil.startServiceRightWay(applicationContext, intent)
             bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
         }
     }
@@ -26,6 +28,7 @@ abstract class BaseACBActivity<S: BaseFBService> : BaseACActivity() {
         super.onStop()
         if (service != null) {
             unbindService(serviceConnection)
+            ServiceUtil.stopService(applicationContext, serviceClass!!)
         }
     }
 
