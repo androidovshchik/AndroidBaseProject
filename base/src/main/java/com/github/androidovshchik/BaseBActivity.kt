@@ -9,15 +9,17 @@ import android.os.IBinder
 @Suppress("MemberVisibilityCanBePrivate")
 abstract class BaseBActivity<S: BaseFBService> : BaseActivity() {
 
-    abstract val serviceClass: Class<out BaseFBService>
+    abstract var serviceClass: Class<out BaseFBService>?
 
     var service: S? = null
 
     override fun onStart() {
         super.onStart()
-        val intent = Intent(applicationContext, serviceClass)
-        startService(intent)
-        bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
+        if (serviceClass != null) {
+            val intent = Intent(applicationContext, serviceClass)
+            startService(intent)
+            bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
+        }
     }
 
     override fun onStop() {
