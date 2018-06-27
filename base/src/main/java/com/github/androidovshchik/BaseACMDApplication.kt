@@ -11,7 +11,7 @@ import org.acra.ACRA
 import timber.log.Timber
 
 @Suppress("MemberVisibilityCanBePrivate", "NON_EXHAUSTIVE_WHEN")
-abstract class BaseMultiDexApplication: MultiDexApplication() {
+abstract class BaseACMDApplication: MultiDexApplication() {
 
     abstract val environment: Environment
 

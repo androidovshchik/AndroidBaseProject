@@ -2,7 +2,7 @@
 
 package com.github.androidovshchik
 
-import android.support.multidex.MultiDexApplication
+import android.app.Application
 import android.text.TextUtils
 import com.github.androidovshchik.data.Preferences
 import com.github.androidovshchik.utils.ACRAUtil
@@ -11,7 +11,7 @@ import org.acra.ACRA
 import timber.log.Timber
 
 @Suppress("MemberVisibilityCanBePrivate", "NON_EXHAUSTIVE_WHEN")
-abstract class BaseAppCompatMultiDexApplication: MultiDexApplication() {
+abstract class BaseACApplication: Application() {
 
     abstract val environment: Environment
 
