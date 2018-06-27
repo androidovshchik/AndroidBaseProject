@@ -9,7 +9,7 @@ import android.os.IBinder
 @Suppress("MemberVisibilityCanBePrivate")
 abstract class BaseBActivity<S: BaseFBService> : BaseActivity() {
 
-    abstract var serviceClass: Class<out BaseFBService>?
+    abstract val serviceClass: Class<out BaseFBService>?
 
     var service: S? = null
 
