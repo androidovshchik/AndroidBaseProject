@@ -15,8 +15,8 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 28
-        versionCode 19
-        versionName "2.0.1"
+        versionCode 20
+        versionName "2.0.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     sourceSets {
@@ -100,4 +100,5 @@ task dokkaJar(type: Jar, dependsOn: 'dokka') {
 artifacts {
     archives packageSources
     archives javadocJar
+    archives dokkaJar
 }
