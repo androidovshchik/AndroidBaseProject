@@ -15,6 +15,8 @@ abstract class BaseMDApplication: MultiDexApplication() {
 
     abstract val environment: Environment
 
+    abstract val theme: Int
+
     protected lateinit var preferences: Preferences
 
     override fun onCreate() {
@@ -34,7 +36,7 @@ abstract class BaseMDApplication: MultiDexApplication() {
         }
         when (environment) {
             Environment.SANDBOX -> {
-                ACRAUtil.init(this, R.style.LibraryTheme_Dialog)
+                ACRAUtil.init(this, theme)
             }
         }
         preferences = Preferences(applicationContext)

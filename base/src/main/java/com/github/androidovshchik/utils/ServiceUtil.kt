@@ -21,13 +21,13 @@ object ServiceUtil {
         return false
     }
 
-    fun forceStartService(context: Context, serviceClass: Class<out Service>) {
+    fun forceStartService(context: Context, serviceClass: Class<out Service>, isForeground: Boolean) {
         stopService(context, serviceClass)
-        startServiceRightWay(context, Intent(context, serviceClass))
+        startServiceRightWay(context, Intent(context, serviceClass), isForeground)
     }
 
-    fun startServiceRightWay(context: Context, intent: Intent) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+    fun startServiceRightWay(context: Context, intent: Intent, isForeground: Boolean) {
+        if (isForeground && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             context.startForegroundService(intent)
         } else {
             context.startService(intent)
