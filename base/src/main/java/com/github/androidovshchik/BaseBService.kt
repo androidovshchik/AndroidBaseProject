@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Binder
 import android.os.IBinder
 
-abstract class BaseFBService : BaseFService() {
+abstract class BaseBService : BaseService() {
 
     private val binder = BaseBinder()
 
@@ -19,6 +19,6 @@ abstract class BaseFBService : BaseFService() {
     @Suppress("unused")
     inner class BaseBinder : Binder() {
 
-        internal val service: BaseFBService get() = this@BaseFBService
+        internal val service: BaseBService get() = this@BaseBService
     }
 }

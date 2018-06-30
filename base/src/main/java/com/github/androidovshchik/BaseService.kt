@@ -13,7 +13,7 @@ import com.github.androidovshchik.utils.NotificationUtil
 import io.reactivex.disposables.CompositeDisposable
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
-abstract class BaseFService : Service() {
+open class BaseService : Service() {
 
     private var wakeLock: PowerManager.WakeLock? = null
 
@@ -25,24 +25,25 @@ abstract class BaseFService : Service() {
         return null
     }
 
-    @SuppressLint("WakelockTimeout")
     override fun onCreate() {
         super.onCreate()
-        val manager = getSystemService(Context.POWER_SERVICE) as PowerManager
-        wakeLock = manager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, getString(R.string.library_name))
-        wakeLock!!.acquire()
         preferences = Preferences(applicationContext)
     }
 
-    override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
-        return Service.START_NOT_STICKY
+    @SuppressLint("WakelockTimeout")
+    protected fun acquireWakeLock() {
+        val manager = getSystemService(Context.POWER_SERVICE) as PowerManager
+        wakeLock = manager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, getString(R.string.library_name))
+        wakeLock!!.acquire()
     }
 
     protected fun startForeground(id: Int, title: String, @DrawableRes icon: Int) {
         startForeground(id, NotificationUtil.makeSilent(applicationContext, title, icon))
     }
 
-    protected abstract fun hasConditions(): Boolean
+    override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
+        return Service.START_NOT_STICKY
+    }
 
     protected fun showToast(message: String) {
         val intent = Intent(applicationContext, ToastTrigger::class.java)
@@ -58,6 +59,7 @@ abstract class BaseFService : Service() {
     override fun onDestroy() {
         super.onDestroy()
         disposable.dispose()
-        wakeLock!!.release()
+        wakeLock?.release()
+        wakeLock = null
     }
 }
