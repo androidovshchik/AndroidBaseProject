@@ -8,7 +8,7 @@ import android.os.IBinder
 import com.github.androidovshchik.utils.ServiceUtil
 
 @Suppress("MemberVisibilityCanBePrivate")
-abstract class BaseACBActivity<S: BaseBService> : BaseACActivity() {
+abstract class BaseV7BActivity<S: BaseBService> : BaseV7Activity() {
 
     abstract val serviceClass: Class<out BaseBService>?
 

@@ -2,11 +2,11 @@ package io.github.androidovshchik.demo
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import com.github.androidovshchik.BaseACActivity
+import com.github.androidovshchik.BaseV7Activity
 import com.github.androidovshchik.utils.PermissionUtil
 import timber.log.Timber
 
-class MainActivity : BaseACActivity() {
+class MainActivity : BaseV7Activity() {
 
     @SuppressLint("LogNotTimber")
     override fun onCreate(savedInstanceState: Bundle?) {
