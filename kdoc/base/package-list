@@ -1,8 +1,0 @@
-$dokka.format:html
-$dokka.linkExtension:html
-
-com.github.androidovshchik
-com.github.androidovshchik.data
-com.github.androidovshchik.models
-com.github.androidovshchik.receivers
-com.github.androidovshchik.utils

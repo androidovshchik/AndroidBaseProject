@@ -6,6 +6,8 @@
     <img src="https://img.shields.io/badge/paypal-donate-green.svg" alt="PayPal donate button"/>
 </a>
 
+[Documentation](https://androidovshchik.github.io/BaseProject/base)
+
 Add it to your build.gradle with:
 ```gradle
 allprojects {
