@@ -8,9 +8,11 @@ import android.os.IBinder
 import com.github.androidovshchik.utils.ServiceUtil
 
 @Suppress("MemberVisibilityCanBePrivate")
-abstract class BaseBActivity<S: BaseFBService> : BaseActivity() {
+abstract class BaseBActivity<S: BaseBService> : BaseActivity() {
 
-    abstract val serviceClass: Class<out BaseFBService>?
+    abstract val serviceClass: Class<out BaseBService>?
+
+    abstract val foreground: Boolean
 
     var service: S? = null
 
@@ -18,8 +20,8 @@ abstract class BaseBActivity<S: BaseFBService> : BaseActivity() {
         super.onStart()
         if (serviceClass != null) {
             ServiceUtil.stopService(applicationContext, serviceClass!!)
-            val intent = Intent(applicationContext, serviceClass)
-            ServiceUtil.startServiceRightWay(applicationContext, intent)
+            val intent = Intent(applicationContext, serviceClass!!)
+            ServiceUtil.startServiceRightWay(applicationContext, intent, foreground)
             bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
         }
     }
@@ -40,7 +42,7 @@ abstract class BaseBActivity<S: BaseFBService> : BaseActivity() {
 
         @Suppress("UNCHECKED_CAST")
         override fun onServiceConnected(name: ComponentName, binder: IBinder) {
-            service = (binder as BaseFBService.BaseBinder).service as S
+            service = (binder as BaseBService.BaseBinder).service as S
         }
     }
 }
