@@ -1,4 +1,4 @@
-package com.github.androidovshchik.data
+package com.github.androidovshchik.db
 
 import android.arch.persistence.db.SupportSQLiteDatabase
 import android.arch.persistence.db.SupportSQLiteOpenHelper

@@ -1,15 +1,15 @@
 @file:Suppress("MemberVisibilityCanBePrivate", "unused")
 
-package com.github.androidovshchik.data
+package com.github.androidovshchik.db
 
 import android.arch.persistence.db.SupportSQLiteOpenHelper
 import android.arch.persistence.db.framework.FrameworkSQLiteOpenHelperFactory
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
+import com.github.androidovshchik.models.Row
 import com.squareup.sqlbrite3.BriteDatabase
 import com.squareup.sqlbrite3.SqlBrite
-import com.github.androidovshchik.models.Row
 import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
 import io.reactivex.ObservableOnSubscribe

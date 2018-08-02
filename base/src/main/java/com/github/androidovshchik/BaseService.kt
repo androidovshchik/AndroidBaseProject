@@ -6,7 +6,6 @@ import android.content.Intent
 import android.os.IBinder
 import android.os.PowerManager
 import android.support.annotation.DrawableRes
-import com.github.androidovshchik.data.Preferences
 import com.github.androidovshchik.receivers.ToastTrigger
 import com.github.androidovshchik.utils.NotificationUtil
 import com.github.androidovshchik.utils.newWakeLock
@@ -20,15 +19,8 @@ open class BaseService : Service() {
 
     protected var disposable = CompositeDisposable()
 
-    protected lateinit var preferences: Preferences
-
     override fun onBind(intent: Intent): IBinder? {
         return null
-    }
-
-    override fun onCreate() {
-        super.onCreate()
-        preferences = Preferences(applicationContext)
     }
 
     @SuppressLint("WakelockTimeout")

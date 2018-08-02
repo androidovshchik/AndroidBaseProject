@@ -5,11 +5,7 @@ package com.github.androidovshchik
 import android.app.Application
 import android.text.TextUtils
 import com.facebook.stetho.Stetho
-import com.github.androidovshchik.data.Preferences
-import com.github.androidovshchik.utils.ACRAUtil
-import com.github.androidovshchik.utils.appContext
-import com.github.androidovshchik.utils.isBuildConfigDebug
-import com.github.androidovshchik.utils.newLine
+import com.github.androidovshchik.utils.*
 import org.acra.ACRA
 import timber.log.Timber
 
@@ -17,8 +13,6 @@ import timber.log.Timber
 abstract class BaseApplication: Application() {
 
     abstract val theme: Int
-
-    protected lateinit var preferences: Preferences
 
     override fun onCreate() {
         super.onCreate()
@@ -30,7 +24,6 @@ abstract class BaseApplication: Application() {
             Stetho.initializeWithDefaults(appContext)
             ACRAUtil.init(this, theme)
         }
-        preferences = Preferences(applicationContext)
         Timber.d(TextUtils.join(newLine(), preferences.getAllSorted()))
     }
 }

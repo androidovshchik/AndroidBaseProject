@@ -7,16 +7,21 @@ import android.app.*
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Build
 import android.os.PowerManager
 import android.os.SystemClock
+import android.preference.PreferenceManager
 import android.telephony.SmsManager
 import android.telephony.TelephonyManager
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import timber.log.Timber
+import java.io.FileOutputStream
 
 val Context.appContext: Context get() = applicationContext
+
+val Context.preferences: SharedPreferences get() = PreferenceManager.getDefaultSharedPreferences(appContext)
 
 val Context.activityManager: ActivityManager get() = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
 
@@ -33,17 +38,6 @@ val Context.telephonyManager: TelephonyManager get() = getSystemService(Context.
 val Context.windowManager: WindowManager get() = getSystemService(Context.WINDOW_SERVICE) as WindowManager
 
 val Context.powerManager: PowerManager get() = getSystemService(Context.POWER_SERVICE) as PowerManager
-
-fun Context.isBuildConfigDebug(): Boolean {
-    try {
-        return Class.forName("$packageName.BuildConfig")
-            .getField("DEBUG")
-            .get(null) as Boolean
-    } catch (e: Exception) {
-        Timber.e(e)
-    }
-    return true
-}
 
 fun Context.newIntent(serviceClass: Class<out Any>): Intent {
     return Intent(appContext, serviceClass)
@@ -77,6 +71,17 @@ fun Context.stopService(serviceClass: Class<out Service>) {
     }
 }
 
+fun Context.isBuildConfigDebug(): Boolean {
+    try {
+        return Class.forName("$packageName.BuildConfig")
+            .getField("DEBUG")
+            .get(null) as Boolean
+    } catch (e: Exception) {
+        Timber.e(e)
+    }
+    return true
+}
+
 @SuppressLint("NewApi")
 fun Context.nextAlarm(interval: Int, receiverClass: Class<out BroadcastReceiver>) {
     cancelAlarm(receiverClass)
@@ -94,6 +99,16 @@ fun Context.nextAlarm(interval: Int, receiverClass: Class<out BroadcastReceiver>
 
 fun Context.cancelAlarm(receiverClass: Class<out BroadcastReceiver>) {
     alarmManager.cancel(PendingIntent.getBroadcast(appContext, 0, newIntent(receiverClass), 0))
+}
+
+fun Context.copyFileFromAssets(from: String, to: String) {
+    val input = assets.open(from)
+    val output = FileOutputStream(to)
+    input.use { _ ->
+        output.use { _ ->
+            input.copyTo(output)
+        }
+    }
 }
 
 @SuppressLint("MissingPermission")

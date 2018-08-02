@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatDelegate
 import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
-import com.github.androidovshchik.data.Preferences
 import io.reactivex.disposables.CompositeDisposable
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
@@ -17,15 +16,12 @@ open class BaseV7PActivity : PreferenceActivity() {
 
     protected val disposable = CompositeDisposable()
 
-    protected lateinit var preferences: Preferences
-
     private var delegate: AppCompatDelegate? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         getDelegate().installViewFactory()
         getDelegate().onCreate(savedInstanceState)
         super.onCreate(savedInstanceState)
-        preferences = Preferences(applicationContext)
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
