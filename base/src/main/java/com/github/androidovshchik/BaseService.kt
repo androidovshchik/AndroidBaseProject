@@ -2,7 +2,6 @@ package com.github.androidovshchik
 
 import android.annotation.SuppressLint
 import android.app.Service
-import android.content.Context
 import android.content.Intent
 import android.os.IBinder
 import android.os.PowerManager
@@ -10,6 +9,8 @@ import android.support.annotation.DrawableRes
 import com.github.androidovshchik.data.Preferences
 import com.github.androidovshchik.receivers.ToastTrigger
 import com.github.androidovshchik.utils.NotificationUtil
+import com.github.androidovshchik.utils.newWakeLock
+import com.github.androidovshchik.utils.powerManager
 import io.reactivex.disposables.CompositeDisposable
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
@@ -32,9 +33,7 @@ open class BaseService : Service() {
 
     @SuppressLint("WakelockTimeout")
     protected fun acquireWakeLock() {
-        val manager = getSystemService(Context.POWER_SERVICE) as PowerManager
-        wakeLock = manager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, getString(R.string.library_name))
-        wakeLock!!.acquire()
+        wakeLock = powerManager.newWakeLock(getString(R.string.library_name))
     }
 
     protected fun startForeground(id: Int, title: String, @DrawableRes icon: Int) {

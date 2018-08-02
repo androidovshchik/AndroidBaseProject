@@ -8,6 +8,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import android.os.PowerManager
 import android.os.SystemClock
 import android.telephony.SmsManager
 import android.telephony.TelephonyManager
@@ -30,6 +31,8 @@ val Context.alarmManager: AlarmManager get() = getSystemService(Context.ALARM_SE
 val Context.telephonyManager: TelephonyManager get() = getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
 
 val Context.windowManager: WindowManager get() = getSystemService(Context.WINDOW_SERVICE) as WindowManager
+
+val Context.powerManager: PowerManager get() = getSystemService(Context.POWER_SERVICE) as PowerManager
 
 fun Context.isBuildConfigDebug(): Boolean {
     try {
