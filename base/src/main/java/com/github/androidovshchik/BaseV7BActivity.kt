@@ -2,10 +2,12 @@ package com.github.androidovshchik
 
 import android.content.ComponentName
 import android.content.Context
-import android.content.Intent
 import android.content.ServiceConnection
 import android.os.IBinder
-import com.github.androidovshchik.utils.ServiceUtil
+import com.github.androidovshchik.utils.newIntent
+import com.github.androidovshchik.utils.startForegroundService
+import com.github.androidovshchik.utils.startService
+import com.github.androidovshchik.utils.stopService
 
 @Suppress("MemberVisibilityCanBePrivate")
 abstract class BaseV7BActivity<S: BaseBService> : BaseV7Activity() {
@@ -19,10 +21,13 @@ abstract class BaseV7BActivity<S: BaseBService> : BaseV7Activity() {
     override fun onStart() {
         super.onStart()
         if (serviceClass != null) {
-            ServiceUtil.stopService(applicationContext, serviceClass!!)
-            val intent = Intent(applicationContext, serviceClass!!)
-            ServiceUtil.startServiceRightWay(applicationContext, intent, foreground)
-            bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
+            stopService(serviceClass!!)
+            if (foreground) {
+                startForegroundService(serviceClass!!)
+            } else {
+                startService(serviceClass!!)
+            }
+            bindService(newIntent(serviceClass!!), serviceConnection, Context.BIND_AUTO_CREATE)
         }
     }
 
@@ -30,7 +35,7 @@ abstract class BaseV7BActivity<S: BaseBService> : BaseV7Activity() {
         super.onStop()
         if (service != null) {
             unbindService(serviceConnection)
-            ServiceUtil.stopService(applicationContext, serviceClass!!)
+            stopService(serviceClass!!)
         }
     }
 

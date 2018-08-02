@@ -25,10 +25,8 @@ abstract class BaseV4Fragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return bindView(inflater.inflate(layout, container, false))
+        return inflater.inflate(layout, container, false)
     }
-
-    abstract fun bindView(view: View): View
 
     override fun onDestroy() {
         super.onDestroy()

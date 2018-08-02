@@ -42,13 +42,17 @@ fun Context.isBuildConfigDebug(): Boolean {
     return true
 }
 
+fun Context.newIntent(serviceClass: Class<out Any>): Intent {
+    return Intent(appContext, serviceClass)
+}
+
 fun Context.startService(serviceClass: Class<out Service>) {
-    startService(Intent(appContext, serviceClass))
+    startService(newIntent(serviceClass))
 }
 
 fun Context.startForegroundService(serviceClass: Class<out Service>) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-        startForegroundService(Intent(appContext, serviceClass))
+        startForegroundService(newIntent(serviceClass))
     } else {
         startService(serviceClass)
     }
@@ -66,7 +70,7 @@ fun Context.forceRestartForegroundService(serviceClass: Class<out Service>) {
 
 fun Context.stopService(serviceClass: Class<out Service>) {
     if (activityManager.isServiceRunning(serviceClass)) {
-        stopService(Intent(appContext, serviceClass))
+        stopService(newIntent(serviceClass))
     }
 }
 
@@ -74,7 +78,7 @@ fun Context.stopService(serviceClass: Class<out Service>) {
 fun Context.nextAlarm(interval: Int, receiverClass: Class<out BroadcastReceiver>) {
     cancelAlarm(receiverClass)
     val sdkInt = Build.VERSION.SDK_INT
-    val intent = PendingIntent.getBroadcast(appContext, 0, Intent(appContext, receiverClass), 0)
+    val intent = PendingIntent.getBroadcast(appContext, 0, newIntent(receiverClass), 0)
     when {
         sdkInt >= Build.VERSION_CODES.M -> alarmManager.setExactAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP,
             SystemClock.elapsedRealtime() + interval, intent)
@@ -86,7 +90,7 @@ fun Context.nextAlarm(interval: Int, receiverClass: Class<out BroadcastReceiver>
 }
 
 fun Context.cancelAlarm(receiverClass: Class<out BroadcastReceiver>) {
-    alarmManager.cancel(PendingIntent.getBroadcast(appContext, 0, Intent(appContext, receiverClass), 0))
+    alarmManager.cancel(PendingIntent.getBroadcast(appContext, 0, newIntent(receiverClass), 0))
 }
 
 @SuppressLint("MissingPermission")
