@@ -1,5 +1,7 @@
 package com.github.androidovshchik
 
+const val COLUMN_ROW_ID = "rowid"
+
 const val NUMBERS = "0123456789"
 
 const val UPPER_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"

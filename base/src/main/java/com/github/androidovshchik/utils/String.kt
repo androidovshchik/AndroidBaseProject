@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.github.androidovshchik.utils
 
 import android.net.Uri
