@@ -1,6 +1,6 @@
 @file:Suppress("MemberVisibilityCanBePrivate", "unused")
 
-package com.github.androidovshchik.db
+package com.github.androidovshchik.sqlite
 
 import android.arch.persistence.db.SupportSQLiteOpenHelper
 import android.arch.persistence.db.framework.FrameworkSQLiteOpenHelperFactory

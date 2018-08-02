@@ -22,7 +22,7 @@ abstract class BaseApplication: Application() {
         if (isBuildConfigDebug()) {
             Timber.plant(Timber.DebugTree())
             Stetho.initializeWithDefaults(appContext)
-            ACRAUtil.init(this, theme)
+            initACRA(theme)
         }
         Timber.d(TextUtils.join(newLine(), preferences.getAllSorted()))
     }

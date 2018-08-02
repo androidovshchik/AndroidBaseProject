@@ -17,7 +17,6 @@ import android.telephony.TelephonyManager
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import timber.log.Timber
-import java.io.FileOutputStream
 
 val Context.appContext: Context get() = applicationContext
 
@@ -99,16 +98,6 @@ fun Context.nextAlarm(interval: Int, receiverClass: Class<out BroadcastReceiver>
 
 fun Context.cancelAlarm(receiverClass: Class<out BroadcastReceiver>) {
     alarmManager.cancel(PendingIntent.getBroadcast(appContext, 0, newIntent(receiverClass), 0))
-}
-
-fun Context.copyFileFromAssets(from: String, to: String) {
-    val input = assets.open(from)
-    val output = FileOutputStream(to)
-    input.use { _ ->
-        output.use { _ ->
-            input.copyTo(output)
-        }
-    }
 }
 
 @SuppressLint("MissingPermission")
