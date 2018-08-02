@@ -11,6 +11,7 @@ import android.os.Build
 import android.os.SystemClock
 import android.telephony.SmsManager
 import android.telephony.TelephonyManager
+import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import timber.log.Timber
 
@@ -27,6 +28,8 @@ val Context.notificationManager: NotificationManager get() = getSystemService(Co
 val Context.alarmManager: AlarmManager get() = getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
 val Context.telephonyManager: TelephonyManager get() = getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+
+val Context.windowManager: WindowManager get() = getSystemService(Context.WINDOW_SERVICE) as WindowManager
 
 fun Context.stopService(serviceClass: Class<out Service>) {
     if (activityManager.isServiceRunning(serviceClass)) {
