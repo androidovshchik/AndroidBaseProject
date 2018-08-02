@@ -31,22 +31,42 @@ val Context.telephonyManager: TelephonyManager get() = getSystemService(Context.
 
 val Context.windowManager: WindowManager get() = getSystemService(Context.WINDOW_SERVICE) as WindowManager
 
-fun Context.stopService(serviceClass: Class<out Service>) {
-    if (activityManager.isServiceRunning(serviceClass)) {
-        stopService(Intent(appContext, serviceClass))
+fun Context.isBuildConfigDebug(): Boolean {
+    try {
+        return Class.forName("$packageName.BuildConfig")
+            .getField("DEBUG")
+            .get(null) as Boolean
+    } catch (e: Exception) {
+        Timber.e(e)
+    }
+    return true
+}
+
+fun Context.startService(serviceClass: Class<out Service>) {
+    startService(Intent(appContext, serviceClass))
+}
+
+fun Context.startForegroundService(serviceClass: Class<out Service>) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        startForegroundService(Intent(appContext, serviceClass))
+    } else {
+        startService(serviceClass)
     }
 }
 
-fun Context.forceRestartService(serviceClass: Class<out Service>, isForeground: Boolean) {
+fun Context.forceRestartService(serviceClass: Class<out Service>) {
     stopService(serviceClass)
-    startServiceRightWay(serviceClass, isForeground)
+    startService(serviceClass)
 }
 
-fun Context.startServiceRightWay(serviceClass: Class<out Service>, isForeground: Boolean) {
-    if (isForeground && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-        startForegroundService(Intent(appContext, serviceClass))
-    } else {
-        startService(Intent(appContext, serviceClass))
+fun Context.forceRestartForegroundService(serviceClass: Class<out Service>) {
+    stopService(serviceClass)
+    startForegroundService(serviceClass)
+}
+
+fun Context.stopService(serviceClass: Class<out Service>) {
+    if (activityManager.isServiceRunning(serviceClass)) {
+        stopService(Intent(appContext, serviceClass))
     }
 }
 
@@ -75,7 +95,7 @@ fun Context.makeCall(phone: String) {
         val intent = Intent(Intent.ACTION_CALL, phone.phone2Uri())
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(intent)
-    } catch (e: SecurityException) {
+    } catch (e: Exception) {
         Timber.e(e)
     }
 }
@@ -85,7 +105,7 @@ fun Context.sendSMS(phone: String, text: String) {
         SmsManager.getDefault()
             .sendTextMessage(phone, null, text, PendingIntent.getActivity(appContext, 0,
                 Intent(), 0), null)
-    } catch (e: SecurityException) {
+    } catch (e: Exception) {
         Timber.e(e)
     }
 }

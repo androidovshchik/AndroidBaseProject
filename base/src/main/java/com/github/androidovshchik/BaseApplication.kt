@@ -4,16 +4,17 @@ package com.github.androidovshchik
 
 import android.app.Application
 import android.text.TextUtils
+import com.facebook.stetho.Stetho
 import com.github.androidovshchik.data.Preferences
 import com.github.androidovshchik.utils.ACRAUtil
-import com.github.androidovshchik.utils.StethoUtil
+import com.github.androidovshchik.utils.appContext
+import com.github.androidovshchik.utils.isBuildConfigDebug
+import com.github.androidovshchik.utils.newLine
 import org.acra.ACRA
 import timber.log.Timber
 
 @Suppress("MemberVisibilityCanBePrivate", "NON_EXHAUSTIVE_WHEN")
 abstract class BaseApplication: Application() {
-
-    abstract val environment: Environment
 
     abstract val theme: Int
 
@@ -24,22 +25,12 @@ abstract class BaseApplication: Application() {
         if (ACRA.isACRASenderServiceProcess()) {
             return
         }
-        when {
-            environment != Environment.PRODUCTION -> {
-                Timber.plant(Timber.DebugTree())
-            }
-        }
-        when (environment) {
-            Environment.DEVELOP -> {
-                StethoUtil.init(applicationContext)
-            }
-        }
-        when (environment) {
-            Environment.SANDBOX -> {
-                ACRAUtil.init(this, theme)
-            }
+        if (isBuildConfigDebug()) {
+            Timber.plant(Timber.DebugTree())
+            Stetho.initializeWithDefaults(appContext)
+            ACRAUtil.init(this, theme)
         }
         preferences = Preferences(applicationContext)
-        Timber.d(TextUtils.join(System.getProperty("line.separator"), preferences.getAllSorted()))
+        Timber.d(TextUtils.join(newLine(), preferences.getAllSorted()))
     }
 }

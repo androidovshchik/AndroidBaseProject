@@ -11,7 +11,7 @@ import timber.log.Timber
 fun TelephonyManager.imei(): String? {
     try {
         return deviceId
-    } catch (e: SecurityException) {
+    } catch (e: Exception) {
         Timber.e(e)
     }
     return null
