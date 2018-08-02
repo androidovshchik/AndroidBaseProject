@@ -17,23 +17,15 @@ fun TelephonyManager.imei(): String? {
     return null
 }
 
-fun TelephonyManager.killCall(): Boolean {
+fun TelephonyManager.killCall() {
     try {
-        // Get the getITelephony() method
         val methodGetITelephony = javaClass.getDeclaredMethod("getITelephony")
-        // Ignore that the method is supposed to be private
         methodGetITelephony.isAccessible = true
-        // Invoke getITelephony() to get the ITelephony interface
         val telephonyInterface = methodGetITelephony.invoke(this)
-        // Get the endCall method from ITelephony
-        val methodEndCall = telephonyInterface.javaClass
+        telephonyInterface.javaClass
             .getDeclaredMethod("endCall")
-        // Invoke endCall()
-        methodEndCall.invoke(telephonyInterface)
+            .invoke(telephonyInterface)
     } catch (e: Exception) {
-        // Many things can go wrong with reflection calls
         Timber.e(e)
-        return false
     }
-    return true
 }
