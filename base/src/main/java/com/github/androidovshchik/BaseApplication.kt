@@ -12,8 +12,6 @@ import timber.log.Timber
 @Suppress("MemberVisibilityCanBePrivate", "NON_EXHAUSTIVE_WHEN")
 abstract class BaseApplication: Application() {
 
-    abstract val theme: Int
-
     override fun onCreate() {
         super.onCreate()
         if (ACRA.isACRASenderServiceProcess()) {
@@ -22,7 +20,7 @@ abstract class BaseApplication: Application() {
         if (isBuildConfigDebug()) {
             Timber.plant(Timber.DebugTree())
             Stetho.initializeWithDefaults(appContext)
-            initACRA(theme)
+            initACRA(R.style.LibraryTheme_Dialog)
         }
         Timber.d(TextUtils.join(newLine(), preferences.getAllSorted()))
     }
