@@ -16,6 +16,9 @@ class MainActivity : BaseV7Activity() {
                 Timber.d("isGranted ${it.isGranted}")
                 // it.deniedPermissions is nullable
                 Timber.d("deniedPermissions ${it.deniedPermissions}")
+                if (it.isGranted) {
+                    // success
+                }
             }, {
                 Timber.e(it)
             })

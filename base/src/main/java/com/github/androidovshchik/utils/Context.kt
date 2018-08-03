@@ -13,6 +13,7 @@ import android.os.Build
 import android.os.PowerManager
 import android.os.SystemClock
 import android.preference.PreferenceManager
+import android.support.v7.app.AppCompatActivity
 import android.telephony.SmsManager
 import android.telephony.TelephonyManager
 import android.view.WindowManager
@@ -46,6 +47,16 @@ val Context.powerManager: PowerManager get() = getSystemService(Context.POWER_SE
 
 fun Context.newIntent(serviceClass: Class<out Any>): Intent {
     return Intent(appContext, serviceClass)
+}
+
+fun Context.newPendingActivity(activityClass: Class<out AppCompatActivity>): PendingIntent {
+    return PendingIntent.getActivity(appContext, 0, newIntent(activityClass),
+        PendingIntent.FLAG_UPDATE_CURRENT)
+}
+
+fun Context.newPendingReceiver(receiverClass: Class<out BroadcastReceiver>): PendingIntent {
+    return PendingIntent.getBroadcast(appContext, 0, newIntent(receiverClass),
+        PendingIntent.FLAG_UPDATE_CURRENT)
 }
 
 fun Context.startService(serviceClass: Class<out Service>) {
@@ -88,17 +99,6 @@ fun Context.areGranted(vararg permissions: String): Boolean {
     return TedPermission.isGranted(appContext, *permissions)
 }
 
-fun Context.isBuildConfigDebug(): Boolean {
-    try {
-        return Class.forName("$packageName.BuildConfig")
-            .getField("DEBUG")
-            .get(null) as Boolean
-    } catch (e: Exception) {
-        Timber.e(e)
-    }
-    return true
-}
-
 @SuppressLint("NewApi")
 fun Context.nextAlarm(interval: Int, receiverClass: Class<out BroadcastReceiver>) {
     cancelAlarm(receiverClass)
@@ -116,6 +116,17 @@ fun Context.nextAlarm(interval: Int, receiverClass: Class<out BroadcastReceiver>
 
 fun Context.cancelAlarm(receiverClass: Class<out BroadcastReceiver>) {
     alarmManager.cancel(PendingIntent.getBroadcast(appContext, 0, newIntent(receiverClass), 0))
+}
+
+fun Context.isBuildConfigDebug(): Boolean {
+    try {
+        return Class.forName("$packageName.BuildConfig")
+            .getField("DEBUG")
+            .get(null) as Boolean
+    } catch (e: Exception) {
+        Timber.e(e)
+    }
+    return true
 }
 
 @SuppressLint("MissingPermission")

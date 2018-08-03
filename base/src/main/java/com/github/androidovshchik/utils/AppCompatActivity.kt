@@ -3,17 +3,16 @@
 package com.github.androidovshchik.utils
 
 import android.app.ProgressDialog
-import com.github.androidovshchik.BaseV7Activity
+import android.support.v7.app.AppCompatActivity
 import com.github.androidovshchik.R
 import com.gun0912.tedpermission.TedPermissionResult
 import com.tedpark.tedpermission.rx2.TedRx2Permission
 import io.reactivex.Single
 
-val BaseV7Activity.newProgressDialog: ProgressDialog
-    get() =
-        ProgressDialog.show(this, getString(R.string.wait), null, true)
+val AppCompatActivity.newProgressDialog: ProgressDialog get() =
+    ProgressDialog.show(this, getString(R.string.wait), null, true)
 
-fun BaseV7Activity.request(vararg permissions: String): Single<TedPermissionResult> {
+fun AppCompatActivity.request(vararg permissions: String): Single<TedPermissionResult> {
     val builder = TedRx2Permission.with(this)
     builder.setPermissions(*permissions)
     builder.setDeniedTitle(R.string.permission_title)
