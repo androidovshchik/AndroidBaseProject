@@ -9,7 +9,7 @@ fun SharedPreferences.getString(name: String): String {
 }
 
 fun <T> SharedPreferences.getString(name: String, defaultValue: T): String {
-    return getString(name, defaultValue?.toString)!!.trim()
+    return getString(name, defaultValue?.toString())!!.trim()
 }
 
 fun SharedPreferences.getBoolean(name: String): Boolean {
@@ -25,7 +25,7 @@ fun SharedPreferences.getLong(name: String): Long {
 }
 
 fun <T> SharedPreferences.putString(name: String, value: T) {
-    edit().putString(name, value?.toString)
+    edit().putString(name, value?.toString())
         .apply()
 }
 

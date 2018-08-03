@@ -4,9 +4,6 @@ package com.github.androidovshchik.utils
 
 import android.content.res.Resources
 
-val Any.toString: String get() =
-    if (String::class.java.isInstance(this)) this as String else this.toString()
-
 fun newLine(): String {
     return System.getProperty("line.separator")
 }

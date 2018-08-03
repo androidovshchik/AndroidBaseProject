@@ -5,9 +5,7 @@ import android.app.Service
 import android.content.Intent
 import android.os.IBinder
 import android.os.PowerManager
-import android.support.annotation.DrawableRes
 import com.github.androidovshchik.receivers.ToastTrigger
-import com.github.androidovshchik.utils.NotificationUtil
 import com.github.androidovshchik.utils.newWakeLock
 import com.github.androidovshchik.utils.powerManager
 import io.reactivex.disposables.CompositeDisposable
@@ -26,10 +24,6 @@ open class BaseService : Service() {
     @SuppressLint("WakelockTimeout")
     protected fun acquireWakeLock() {
         wakeLock = powerManager.newWakeLock(getString(R.string.library_name))
-    }
-
-    protected fun startForeground(id: Int, title: String, @DrawableRes icon: Int) {
-        startForeground(id, NotificationUtil.makeSilent(applicationContext, title, icon))
     }
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {

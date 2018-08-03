@@ -15,9 +15,6 @@ val BaseV7Activity.newProgressDialog: ProgressDialog get() =
 fun BaseV7Activity.request(vararg permissions: String): Single<TedPermissionResult> {
     val builder = TedRx2Permission.with(this)
     builder.setPermissions(*permissions)
-    builder.setRationaleTitle(R.string.permission_title)
-    builder.setRationaleMessage(R.string.permission_message)
-    builder.setRationaleConfirmText(R.string.permission_confirm)
     builder.setDeniedTitle(R.string.permission_title)
     builder.setDeniedMessage(R.string.permission_message)
     builder.setDeniedCloseButtonText(R.string.permission_close)

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="wait">Пожалуйста, подождите&#8230;</string>
-    <string name="permission_title">Требуются разрешения</string>
-    <string name="permission_message">Необходимо их предоставить через настройки приложения</string>
+    <string name="permission_title">Необходимы разрешения</string>
+    <string name="permission_message">Потребуется их предоставить через настройки приложения</string>
     <string name="permission_confirm">ПОДТВЕРДИТЬ</string>
     <string name="permission_close">ЗАКРЫТЬ</string>
     <string name="permission_setting">НАСТРОЙКИ</string>
