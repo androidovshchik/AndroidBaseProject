@@ -8,6 +8,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
 import android.os.Build
 import android.os.PowerManager
 import android.os.SystemClock
@@ -16,9 +17,13 @@ import android.telephony.SmsManager
 import android.telephony.TelephonyManager
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
+import com.gun0912.tedpermission.TedPermission
 import timber.log.Timber
 
 val Context.appContext: Context get() = applicationContext
+
+val Context.allPermissions: Array<String> get() = packageManager.getPackageInfo(packageName,
+    PackageManager.GET_PERMISSIONS).requestedPermissions ?: arrayOf()
 
 val Context.preferences: SharedPreferences get() = PreferenceManager.getDefaultSharedPreferences(appContext)
 
@@ -68,6 +73,18 @@ fun Context.stopService(serviceClass: Class<out Service>) {
     if (activityManager.isServiceRunning(serviceClass)) {
         stopService(newIntent(serviceClass))
     }
+}
+
+fun Context.isDenied(permission: String): Boolean {
+    return TedPermission.isDenied(appContext, permission)
+}
+
+fun Context.isGranted(permission: String): Boolean {
+    return areGranted(permission)
+}
+
+fun Context.areGranted(vararg permissions: String): Boolean {
+    return TedPermission.isGranted(appContext, *permissions)
 }
 
 fun Context.isBuildConfigDebug(): Boolean {

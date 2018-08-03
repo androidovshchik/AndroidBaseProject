@@ -10,7 +10,7 @@ import org.acra.ACRA
 import timber.log.Timber
 
 @Suppress("MemberVisibilityCanBePrivate", "NON_EXHAUSTIVE_WHEN")
-abstract class BaseApplication: Application() {
+open class BaseApplication: Application() {
 
     override fun onCreate() {
         super.onCreate()
