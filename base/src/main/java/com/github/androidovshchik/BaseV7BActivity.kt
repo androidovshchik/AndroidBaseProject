@@ -10,7 +10,7 @@ import com.github.androidovshchik.utils.startService
 import com.github.androidovshchik.utils.stopService
 
 @Suppress("MemberVisibilityCanBePrivate")
-abstract class BaseV7BActivity<S: BaseBService> : BaseV7Activity() {
+abstract class BaseV7BActivity<S : BaseBService> : BaseV7Activity() {
 
     abstract val serviceClass: Class<out BaseBService>?
 

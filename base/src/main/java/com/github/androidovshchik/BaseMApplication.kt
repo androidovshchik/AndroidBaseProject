@@ -6,7 +6,7 @@ import android.content.Context
 import android.support.multidex.MultiDex
 
 @Suppress("MemberVisibilityCanBePrivate", "NON_EXHAUSTIVE_WHEN")
-open class BaseMApplication: BaseApplication() {
+open class BaseMApplication : BaseApplication() {
 
     override fun attachBaseContext(context: Context) {
         super.attachBaseContext(context)

@@ -5,7 +5,7 @@ import android.arch.persistence.db.SupportSQLiteOpenHelper
 import android.content.Context
 import com.github.androidovshchik.utils.copyFileFromAssets
 
-open class SqliteCallback(val version: Int, private val dbName: String): SupportSQLiteOpenHelper.Callback(version) {
+open class SqliteCallback(val version: Int, private val dbName: String) : SupportSQLiteOpenHelper.Callback(version) {
 
     override fun onCreate(db: SupportSQLiteDatabase) {}
 

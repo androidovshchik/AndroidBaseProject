@@ -9,8 +9,9 @@ import com.gun0912.tedpermission.TedPermissionResult
 import com.tedpark.tedpermission.rx2.TedRx2Permission
 import io.reactivex.Single
 
-val BaseV7Activity.newProgressDialog: ProgressDialog get() =
-    ProgressDialog.show(this, getString(R.string.wait), null, true)
+val BaseV7Activity.newProgressDialog: ProgressDialog
+    get() =
+        ProgressDialog.show(this, getString(R.string.wait), null, true)
 
 fun BaseV7Activity.request(vararg permissions: String): Single<TedPermissionResult> {
     val builder = TedRx2Permission.with(this)

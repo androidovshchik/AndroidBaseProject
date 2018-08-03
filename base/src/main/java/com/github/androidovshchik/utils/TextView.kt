@@ -3,9 +3,9 @@
 package com.github.androidovshchik.utils
 
 import android.text.InputFilter
-import android.widget.TextView
-import android.text.method.DigitsKeyListener
 import android.text.InputType
+import android.text.method.DigitsKeyListener
+import android.widget.TextView
 
 fun TextView.maxLength(maxLength: Int) {
     val array = arrayOfNulls<InputFilter>(1)

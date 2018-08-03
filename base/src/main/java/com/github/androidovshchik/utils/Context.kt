@@ -22,8 +22,9 @@ import timber.log.Timber
 
 val Context.appContext: Context get() = applicationContext
 
-val Context.allPermissions: Array<String> get() = packageManager.getPackageInfo(packageName,
-    PackageManager.GET_PERMISSIONS).requestedPermissions ?: arrayOf()
+val Context.allPermissions: Array<String>
+    get() = packageManager.getPackageInfo(packageName,
+        PackageManager.GET_PERMISSIONS).requestedPermissions ?: arrayOf()
 
 val Context.preferences: SharedPreferences get() = PreferenceManager.getDefaultSharedPreferences(appContext)
 

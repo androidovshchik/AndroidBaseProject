@@ -9,7 +9,7 @@ import com.github.androidovshchik.utils.*
 import org.acra.ACRA
 import timber.log.Timber
 
-open class BaseApplication: Application() {
+open class BaseApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
