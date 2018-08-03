@@ -9,7 +9,6 @@ import com.github.androidovshchik.utils.*
 import org.acra.ACRA
 import timber.log.Timber
 
-@Suppress("MemberVisibilityCanBePrivate", "NON_EXHAUSTIVE_WHEN")
 open class BaseApplication: Application() {
 
     override fun onCreate() {

@@ -4,13 +4,11 @@
 
     <application
         android:supportsRtl="true">
-
         <receiver
             android:name=".receivers.ToastTrigger"
             android:enabled="true"
             android:exported="false">
         </receiver>
-
     </application>
 
 </manifest>
