@@ -1,4 +1,4 @@
-# BaseProject
+# AndroidBaseProject
 > Base template to start work with next project without hardcode
 
 [![Release](https://jitpack.io/v/androidovshchik/BaseProject.svg)](https://jitpack.io/#androidovshchik/BaseProject)
@@ -25,3 +25,7 @@ dependencies {
     implementation 'com.github.androidovshchik:BaseProject:LATEST_VERSION'
 }
 ```
+
+Or
+
+Clone this [repository](https://github.com/androidovshchik/AndroidBlankProject)
