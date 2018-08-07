@@ -1,4 +1,4 @@
-package io.github.androidovshchik.demo
+package io.androidovshchik.demo
 
 import android.os.Bundle
 import com.github.androidovshchik.BaseV7Activity

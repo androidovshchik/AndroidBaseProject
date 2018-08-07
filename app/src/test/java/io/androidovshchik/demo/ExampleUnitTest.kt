@@ -1,4 +1,4 @@
-package io.github.androidovshchik.demo
+package io.androidovshchik.demo
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
