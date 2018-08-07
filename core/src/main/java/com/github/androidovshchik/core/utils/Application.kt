@@ -4,7 +4,7 @@ package com.github.androidovshchik.core.utils
 
 import android.app.Application
 import android.support.annotation.StyleRes
-import com.github.androidovshchik.R
+import com.github.androidovshchik.core.R
 import org.acra.ACRA
 import org.acra.ReportField
 import org.acra.ReportingInteractionMode

@@ -8,7 +8,7 @@ import timber.log.Timber
 
 @Suppress("DEPRECATION")
 @SuppressLint("MissingPermission", "HardwareIds")
-fun TelephonyManager.imei(): String? {
+fun TelephonyManager.readImei(): String? {
     try {
         return deviceId
     } catch (e: Exception) {

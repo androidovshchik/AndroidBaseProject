@@ -12,7 +12,7 @@ import io.reactivex.Single
 val Activity.newProgressDialog: ProgressDialog get() =
     ProgressDialog.show(this, getString(R.string.wait), null, true)
 
-fun Activity.request(vararg permissions: String): Single<TedPermissionResult> {
+fun Activity.requestPermissions(vararg permissions: String): Single<TedPermissionResult> {
     val builder = TedRx2Permission.with(this)
     builder.setPermissions(*permissions)
     builder.setDeniedTitle(R.string.permission_title)

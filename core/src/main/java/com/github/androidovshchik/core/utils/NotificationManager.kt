@@ -7,8 +7,8 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.graphics.Color
 import android.os.Build
-import com.github.androidovshchik.NOISY_CHANNEL_ID
-import com.github.androidovshchik.QUITE_CHANNEL_ID
+import com.github.androidovshchik.core.NOISY_CHANNEL_ID
+import com.github.androidovshchik.core.QUITE_CHANNEL_ID
 
 fun NotificationManager.createSilentChannel() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
