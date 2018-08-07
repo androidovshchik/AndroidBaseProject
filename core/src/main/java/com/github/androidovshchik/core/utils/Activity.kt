@@ -4,7 +4,7 @@ package com.github.androidovshchik.core.utils
 
 import android.app.Activity
 import android.app.ProgressDialog
-import com.github.androidovshchik.R
+import com.github.androidovshchik.core.R
 import com.gun0912.tedpermission.TedPermissionResult
 import com.tedpark.tedpermission.rx2.TedRx2Permission
 import io.reactivex.Single

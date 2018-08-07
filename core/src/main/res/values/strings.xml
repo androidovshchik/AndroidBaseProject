@@ -1,0 +1,10 @@
+<resources>
+    <string name="library_name" translatable="false">BaseProject</string>
+    <string name="wait">Please, wait&#8230;</string>
+    <string name="permission_title">Permissions are required</string>
+    <string name="permission_message">Please provide them from app\'s settings page</string>
+    <string name="permission_close">CLOSE</string>
+    <string name="permission_setting">SETTINGS</string>
+    <string name="error_crash">An error occurred, please send a letter to the developer to solve the problem</string>
+    <string name="error_comment">You can also add a few words about what was happened</string>
+</resources>
