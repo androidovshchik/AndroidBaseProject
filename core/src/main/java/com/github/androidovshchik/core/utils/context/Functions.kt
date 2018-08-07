@@ -1,49 +1,21 @@
 @file:Suppress("unused")
 
-package com.github.androidovshchik.core.utils
+package com.github.androidovshchik.core.utils.context
 
 import android.annotation.SuppressLint
-import android.app.*
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.app.Service
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
-import android.content.pm.PackageManager
 import android.os.Build
-import android.os.PowerManager
 import android.os.SystemClock
-import android.preference.PreferenceManager
 import android.support.v7.app.AppCompatActivity
 import android.telephony.SmsManager
-import android.telephony.TelephonyManager
-import android.view.WindowManager
-import android.view.inputmethod.InputMethodManager
+import com.github.androidovshchik.core.utils.phone2Uri
 import com.gun0912.tedpermission.TedPermission
 import timber.log.Timber
-
-val Context.appContext: Context get() = applicationContext
-
-val Context.allPermissions: Array<String>
-    get() = packageManager.getPackageInfo(packageName,
-        PackageManager.GET_PERMISSIONS).requestedPermissions ?: arrayOf()
-
-val Context.preferences: SharedPreferences get() = PreferenceManager.getDefaultSharedPreferences(appContext)
-
-val Context.activityManager: ActivityManager get() = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-
-val Context.inputMethodManager: InputMethodManager get() = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-
-val Context.keyguardManager: KeyguardManager get() = getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
-
-val Context.notificationManager: NotificationManager get() = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-
-val Context.alarmManager: AlarmManager get() = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-
-val Context.telephonyManager: TelephonyManager get() = getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
-
-val Context.windowManager: WindowManager get() = getSystemService(Context.WINDOW_SERVICE) as WindowManager
-
-val Context.powerManager: PowerManager get() = getSystemService(Context.POWER_SERVICE) as PowerManager
 
 fun Context.newIntent(serviceClass: Class<out Any>): Intent {
     return Intent(appContext, serviceClass)
@@ -82,7 +54,7 @@ fun Context.forceRestartForegroundService(serviceClass: Class<out Service>) {
 }
 
 fun Context.stopService(serviceClass: Class<out Service>) {
-    if (activityManager.isServiceRunning(serviceClass)) {
+    if (isServiceRunning(serviceClass)) {
         stopService(newIntent(serviceClass))
     }
 }
@@ -103,22 +75,21 @@ fun Context.areGranted(vararg permissions: String): Boolean {
 fun Context.nextAlarm(interval: Int, receiverClass: Class<out BroadcastReceiver>) {
     cancelAlarm(receiverClass)
     val sdkInt = Build.VERSION.SDK_INT
-    val intent = PendingIntent.getBroadcast(appContext, 0, newIntent(receiverClass), 0)
     when {
         sdkInt >= Build.VERSION_CODES.M -> alarmManager.setExactAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-            SystemClock.elapsedRealtime() + interval, intent)
+            SystemClock.elapsedRealtime() + interval, newPendingReceiver(receiverClass))
         sdkInt >= android.os.Build.VERSION_CODES.KITKAT -> alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-            SystemClock.elapsedRealtime() + interval, intent)
+            SystemClock.elapsedRealtime() + interval, newPendingReceiver(receiverClass))
         else -> alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-            SystemClock.elapsedRealtime() + interval, intent)
+            SystemClock.elapsedRealtime() + interval, newPendingReceiver(receiverClass))
     }
 }
 
 fun Context.cancelAlarm(receiverClass: Class<out BroadcastReceiver>) {
-    alarmManager.cancel(PendingIntent.getBroadcast(appContext, 0, newIntent(receiverClass), 0))
+    alarmManager.cancel(newPendingReceiver(receiverClass))
 }
 
-fun Context.isBuildConfigDebug(): Boolean {
+fun Context.isDebug(): Boolean {
     try {
         return Class.forName("$packageName.BuildConfig")
             .getField("DEBUG")
@@ -130,9 +101,9 @@ fun Context.isBuildConfigDebug(): Boolean {
 }
 
 @SuppressLint("MissingPermission")
-fun Context.makeCall(phone: String) {
+fun Context.makeCall(number: String) {
     try {
-        val intent = Intent(Intent.ACTION_CALL, phone.phone2Uri())
+        val intent = Intent(Intent.ACTION_CALL, number.phone2Uri())
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(intent)
     } catch (e: Exception) {
