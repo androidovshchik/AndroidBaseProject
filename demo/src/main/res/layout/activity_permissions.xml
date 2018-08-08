@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/all"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="request all"/>
+
+    <Button
+        android:id="@+id/write"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="request WRITE_EXTERNAL_STORAGE" />
+
+    <Button
+        android:id="@+id/camera"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="request CAMERA" />
+
+    <Button
+        android:id="@+id/areAllGranted"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="are all granted"/>
+
+    <Button
+        android:id="@+id/isWriteGranted"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="is WRITE_EXTERNAL_STORAGE granted" />
+
+    <Button
+        android:id="@+id/isCameraGranted"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="is CAMERA granted" />
+
+    <Button
+        android:id="@+id/isCameraDenied"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="is CAMERA denied"/>
+
+</LinearLayout>
