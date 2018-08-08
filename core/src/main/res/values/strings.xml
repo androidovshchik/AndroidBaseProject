@@ -1,5 +1,4 @@
 <resources>
-    <string name="library_name" translatable="false">BaseProject</string>
     <string name="wait">Please, wait&#8230;</string>
     <string name="permission_title">Permissions are required</string>
     <string name="permission_message">Please provide them from app\'s settings page</string>

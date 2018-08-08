@@ -1,2 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.github.androidovshchik.core" />
+    package="com.github.androidovshchik.core">
+
+    <application
+        android:supportsRtl="true">
+        <receiver
+            android:name=".receivers.ToastTrigger"
+            android:enabled="true"
+            android:exported="false">
+        </receiver>
+    </application>
+
+</manifest>

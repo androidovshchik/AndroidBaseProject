@@ -1,1 +1,1 @@
-include ':demo', ':base', ':core', ':sqlite'
+include ':demo', ':core', ':sqlite'
