@@ -13,7 +13,8 @@ class PermissionsActivity : BaseV7Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_permissions)
+        title = javaClass.simpleName
         all.setOnClickListener { _ ->
             request(*allPermissions)
                 .subscribe({
