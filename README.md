@@ -36,9 +36,9 @@ and:
 
 ```gradle
 dependencies {
-    implementation 'com.github.androidovshchik.BaseProject:core:LATEST_VERSION'
-    implementation 'com.github.androidovshchik.BaseProject:support:LATEST_VERSION'
-    implementation 'com.github.androidovshchik.BaseProject:sqlite:LATEST_VERSION'
+    implementation 'com.github.androidovshchik.AndroidBaseProject:core:LATEST_VERSION'
+    implementation 'com.github.androidovshchik.AndroidBaseProject:support:LATEST_VERSION'
+    implementation 'com.github.androidovshchik.AndroidBaseProject:sqlite:LATEST_VERSION'
 }
 ```
 
