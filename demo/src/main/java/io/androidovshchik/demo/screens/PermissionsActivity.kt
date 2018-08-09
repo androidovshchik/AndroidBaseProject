@@ -29,19 +29,6 @@ class PermissionsActivity : BaseV7Activity() {
                     Timber.e(it)
                 })
         }
-        write.setOnClickListener { _ ->
-            requestPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                .subscribe({
-                    Timber.d("WRITE_EXTERNAL_STORAGE isGranted ${it.isGranted}")
-                    // it.deniedPermissions is nullable
-                    Timber.d("deniedPermissions ${it.deniedPermissions}")
-                    if (it.isGranted) {
-                        // success
-                    }
-                }, {
-                    Timber.e(it)
-                })
-        }
         camera.setOnClickListener { _ ->
             requestPermissions(Manifest.permission.CAMERA)
                 .subscribe({
@@ -57,10 +44,6 @@ class PermissionsActivity : BaseV7Activity() {
         }
         areAllGranted.setOnClickListener {
             Toast.makeText(appContext, "Granted: ${areGranted(*allAppPermissions)}", Toast.LENGTH_SHORT)
-                .show()
-        }
-        isWriteGranted.setOnClickListener {
-            Toast.makeText(appContext, "Granted: ${isGranted(Manifest.permission.WRITE_EXTERNAL_STORAGE)}", Toast.LENGTH_SHORT)
                 .show()
         }
         isCameraGranted.setOnClickListener {

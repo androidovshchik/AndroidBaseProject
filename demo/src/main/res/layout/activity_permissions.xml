@@ -11,28 +11,16 @@
         android:text="request all"/>
 
     <Button
-        android:id="@+id/write"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="request WRITE_EXTERNAL_STORAGE" />
-
-    <Button
-        android:id="@+id/camera"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="request CAMERA" />
-
-    <Button
         android:id="@+id/areAllGranted"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="are all granted"/>
 
     <Button
-        android:id="@+id/isWriteGranted"
+        android:id="@+id/camera"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="is WRITE_EXTERNAL_STORAGE granted" />
+        android:text="request CAMERA" />
 
     <Button
         android:id="@+id/isCameraGranted"
