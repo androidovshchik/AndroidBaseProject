@@ -5,9 +5,7 @@ package com.github.androidovshchik.sqlite.models
 import android.content.ContentValues
 import android.database.Cursor
 
-abstract class Row {
-
-    var rowId = 0L
+abstract class Row(var rowId: Long) {
 
     abstract val table: String
 

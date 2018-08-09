@@ -43,6 +43,12 @@
             android:launchMode="singleTask"
             android:parentActivityName=".MainActivity">
         </activity>
+        <activity
+            android:name=".screens.SqliteActivity"
+            android:screenOrientation="sensorPortrait"
+            android:launchMode="singleTask"
+            android:parentActivityName=".MainActivity">
+        </activity>
     </application>
 
 </manifest>
