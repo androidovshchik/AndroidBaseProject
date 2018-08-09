@@ -3,6 +3,9 @@
 package com.github.androidovshchik.core.utils
 
 import android.content.res.Resources
+import java.io.File
+
+val slash: String get() = File.separator
 
 fun newLine(): String {
     return System.getProperty("line.separator")

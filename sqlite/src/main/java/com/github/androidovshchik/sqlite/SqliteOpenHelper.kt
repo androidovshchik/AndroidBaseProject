@@ -4,6 +4,8 @@ import android.arch.persistence.db.SupportSQLiteDatabase
 import android.arch.persistence.db.SupportSQLiteOpenHelper
 import android.content.Context
 import com.github.androidovshchik.core.utils.copyFromAssets
+import com.github.androidovshchik.core.utils.slash
+import java.io.File
 
 open class SqliteOpenHelper(version: Int, private val dbName: String) : SupportSQLiteOpenHelper.Callback(version) {
 
@@ -13,9 +15,12 @@ open class SqliteOpenHelper(version: Int, private val dbName: String) : SupportS
 
     fun openAssetsDatabase(context: Context) {
         val file = context.getDatabasePath(dbName)
-        if (!file.exists()) {
-            context.getDatabasePath(dbName)
-                .copyFromAssets(context, dbName)
+        val path = File("${context.applicationInfo.dataDir}${slash}databases$slash")
+        if (!path.exists()) {
+            path.mkdir()
+            if (!file.exists()) {
+                file.copyFromAssets(context, dbName)
+            }
         }
     }
 }
