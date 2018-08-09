@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentActivity
 import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatDelegate
 import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import io.reactivex.disposables.CompositeDisposable
@@ -70,6 +71,14 @@ open class BaseV7FActivity : FragmentActivity() {
 
     override fun invalidateOptionsMenu() {
         getDelegate().invalidateOptionsMenu()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            onBackPressed()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onStop() {
