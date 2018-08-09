@@ -3,6 +3,7 @@ package com.github.androidovshchik.sqlbrite
 import android.arch.persistence.db.SupportSQLiteDatabase
 import android.arch.persistence.db.SupportSQLiteOpenHelper
 import android.content.Context
+import android.os.Build
 import com.github.androidovshchik.core.utils.copyFromAssets
 import com.github.androidovshchik.core.utils.slash
 import java.io.File
@@ -15,12 +16,14 @@ open class SQLBriteHelper(version: Int, private val dbName: String) : SupportSQL
 
     fun openAssetsDatabase(context: Context) {
         val file = context.getDatabasePath(dbName)
-        val path = File("${context.applicationInfo.dataDir}${slash}databases$slash")
-        if (!path.exists()) {
-            path.mkdir()
-            if (!file.exists()) {
-                file.copyFromAssets(context, dbName)
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            val path = File("${context.applicationInfo.dataDir}${slash}databases$slash")
+            if (!path.exists()) {
+                path.mkdir()
             }
+        }
+        if (!file.exists()) {
+            file.copyFromAssets(context, dbName)
         }
     }
 }
