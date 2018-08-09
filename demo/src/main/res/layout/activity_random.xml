@@ -6,9 +6,21 @@
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/show"
+        android:id="@+id/int03"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="show progress dialog"/>
+        android:text="next int 0..3"/>
+
+    <Button
+        android:id="@+id/string88"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="next string chars 8..8"/>
+
+    <Button
+        android:id="@+id/string23"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="next string numbers 2..3"/>
 
 </LinearLayout>

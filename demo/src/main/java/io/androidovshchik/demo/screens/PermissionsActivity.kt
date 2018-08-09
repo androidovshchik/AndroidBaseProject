@@ -2,6 +2,7 @@ package io.androidovshchik.demo.screens
 
 import android.Manifest
 import android.os.Bundle
+import android.os.Handler
 import android.widget.Toast
 import com.github.androidovshchik.core.utils.context.*
 import com.github.androidovshchik.core.utils.requestPermissions
@@ -43,16 +44,21 @@ class PermissionsActivity : BaseV7Activity() {
                 })
         }
         areAllGranted.setOnClickListener {
-            Toast.makeText(appContext, "Granted: ${areGranted(*allAppPermissions)}", Toast.LENGTH_SHORT)
-                .show()
+            showFastToast(areGranted(*allAppPermissions).toString())
         }
         isCameraGranted.setOnClickListener {
-            Toast.makeText(appContext, "Granted: ${isGranted(Manifest.permission.CAMERA)}", Toast.LENGTH_SHORT)
-                .show()
+            showFastToast(isGranted(Manifest.permission.CAMERA).toString())
         }
         isCameraDenied.setOnClickListener {
-            Toast.makeText(appContext, "Denied: ${isDenied(Manifest.permission.CAMERA)}", Toast.LENGTH_SHORT)
-                .show()
+            showFastToast(isDenied(Manifest.permission.CAMERA).toString())
         }
+    }
+
+    private fun showFastToast(message: String) {
+        val toast = Toast.makeText(appContext, message, Toast.LENGTH_SHORT)
+        toast.show()
+        Handler().postDelayed({
+            toast.cancel()
+        }, 500)
     }
 }
