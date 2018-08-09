@@ -6,7 +6,14 @@
     <img src="https://img.shields.io/badge/paypal-donate-green.svg" alt="PayPal donate button"/>
 </a>
 
-[Documentation](https://androidovshchik.github.io/BaseProject/base)
+## Documentation
+
+[core module][1]
+[core module short][50]
+[support module][2]
+[support module short][51]
+[sqlite module][3]
+[sqlite module short][52]
 
 Add it to your build.gradle with:
 ```gradle
@@ -22,10 +29,19 @@ and:
 
 ```gradle
 dependencies {
-    implementation 'com.github.androidovshchik:BaseProject:LATEST_VERSION'
+    implementation 'com.github.androidovshchik.BaseProject:core:LATEST_VERSION'
+    implementation 'com.github.androidovshchik.BaseProject:support:LATEST_VERSION'
+    implementation 'com.github.androidovshchik.BaseProject:sqlite:LATEST_VERSION'
 }
 ```
 
 Or
 
-Clone this [repository](https://github.com/androidovshchik/AndroidBlankProject)
+Clone [this repository](https://github.com/androidovshchik/AndroidBlankProject)
+
+[1]: https://androidovshchik.github.io/AndroidBaseProject/core/index.html
+[2]: https://androidovshchik.github.io/AndroidBaseProject/support/index.html
+[3]: https://androidovshchik.github.io/AndroidBaseProject/sqlite/index.html
+[50]: https://androidovshchik.github.io/AndroidBaseProject/core/index-outline.html
+[51]: https://androidovshchik.github.io/AndroidBaseProject/support/index-outline.html
+[52]: https://androidovshchik.github.io/AndroidBaseProject/sqlite/index-outline.html
