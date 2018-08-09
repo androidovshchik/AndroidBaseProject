@@ -1,4 +1,4 @@
-package com.github.androidovshchik.sqlite
+package com.github.androidovshchik.sqlbrite
 
 import android.arch.persistence.db.SupportSQLiteDatabase
 import android.arch.persistence.db.SupportSQLiteOpenHelper
@@ -7,7 +7,7 @@ import com.github.androidovshchik.core.utils.copyFromAssets
 import com.github.androidovshchik.core.utils.slash
 import java.io.File
 
-open class SqliteOpenHelper(version: Int, private val dbName: String) : SupportSQLiteOpenHelper.Callback(version) {
+open class SQLBriteHelper(version: Int, private val dbName: String) : SupportSQLiteOpenHelper.Callback(version) {
 
     override fun onCreate(db: SupportSQLiteDatabase) {}
 

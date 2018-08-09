@@ -1,4 +1,4 @@
-package com.github.androidovshchik.sqlite;
+package com.github.androidovshchik.sqlbrite;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

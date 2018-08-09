@@ -1,9 +1,9 @@
 @file:Suppress("unused")
 
-package com.github.androidovshchik.sqlite.utils
+package com.github.androidovshchik.sqlbrite.utils
 
 import android.database.Cursor
-import com.github.androidovshchik.sqlite.models.Row
+import com.github.androidovshchik.sqlbrite.models.Row
 
 @Throws(Exception::class)
 fun <R : Row> Cursor.getRows(rowClass: Class<R>): ArrayList<R> {

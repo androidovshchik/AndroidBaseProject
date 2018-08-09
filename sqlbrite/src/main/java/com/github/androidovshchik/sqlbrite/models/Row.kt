@@ -1,6 +1,6 @@
 @file:Suppress("unused")
 
-package com.github.androidovshchik.sqlite.models
+package com.github.androidovshchik.sqlbrite.models
 
 import android.content.ContentValues
 import android.database.Cursor

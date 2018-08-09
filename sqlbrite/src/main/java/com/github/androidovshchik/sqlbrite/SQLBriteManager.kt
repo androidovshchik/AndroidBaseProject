@@ -1,13 +1,13 @@
 @file:Suppress("MemberVisibilityCanBePrivate", "unused")
 
-package com.github.androidovshchik.sqlite
+package com.github.androidovshchik.sqlbrite
 
 import android.arch.persistence.db.SupportSQLiteOpenHelper
 import android.arch.persistence.db.framework.FrameworkSQLiteOpenHelperFactory
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
-import com.github.androidovshchik.sqlite.models.Row
+import com.github.androidovshchik.sqlbrite.models.Row
 import com.squareup.sqlbrite3.BriteDatabase
 import com.squareup.sqlbrite3.SqlBrite
 import io.reactivex.Observable
@@ -15,13 +15,13 @@ import io.reactivex.ObservableEmitter
 import io.reactivex.ObservableOnSubscribe
 import io.reactivex.schedulers.Schedulers
 
-open class SqliteManager {
+open class SQLBriteManager {
 
     var db: BriteDatabase? = null
 
     fun openAssetsDb(context: Context, dbName: String, version: Int) {
         closeDb()
-        val dbCallback = SqliteOpenHelper(version, dbName)
+        val dbCallback = SQLBriteHelper(version, dbName)
         dbCallback.openAssetsDatabase(context)
         db = SqlBrite.Builder()
             .build()

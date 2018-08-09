@@ -4,8 +4,8 @@ package io.androidovshchik.demo.models
 
 import android.content.ContentValues
 import android.database.Cursor
-import com.github.androidovshchik.sqlite.COLUMN_ROW_ID
-import com.github.androidovshchik.sqlite.models.Row
+import com.github.androidovshchik.sqlbrite.COLUMN_ROW_ID
+import com.github.androidovshchik.sqlbrite.models.Row
 
 class Version : Row {
 

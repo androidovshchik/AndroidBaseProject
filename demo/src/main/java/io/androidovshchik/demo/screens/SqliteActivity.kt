@@ -3,8 +3,8 @@ package io.androidovshchik.demo.screens
 import android.annotation.SuppressLint
 import android.os.Bundle
 import com.github.androidovshchik.core.utils.context.appContext
-import com.github.androidovshchik.sqlite.SqliteManager
-import com.github.androidovshchik.sqlite.utils.getRows
+import com.github.androidovshchik.sqlbrite.SQLBriteManager
+import com.github.androidovshchik.sqlbrite.utils.getRows
 import com.github.androidovshchik.support.BaseV7Activity
 import com.google.gson.GsonBuilder
 import io.androidovshchik.demo.R
@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_sqlite.*
 
 class SqliteActivity : BaseV7Activity() {
 
-    private val sqliteManager = SqliteManager()
+    private val sqliteManager = SQLBriteManager()
 
     private val gson = GsonBuilder()
         .setPrettyPrinting()
