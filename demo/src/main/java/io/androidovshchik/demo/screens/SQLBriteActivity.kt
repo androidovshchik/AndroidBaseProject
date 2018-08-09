@@ -12,9 +12,9 @@ import io.androidovshchik.demo.models.Version
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_sqlite.*
 
-class SqliteActivity : BaseV7Activity() {
+class SQLBriteActivity : BaseV7Activity() {
 
-    private val sqliteManager = SQLBriteManager()
+    private val sqlBriteManager = SQLBriteManager()
 
     private val gson = GsonBuilder()
         .setPrettyPrinting()
@@ -26,17 +26,17 @@ class SqliteActivity : BaseV7Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sqlite)
         title = javaClass.simpleName
-        sqliteManager.openAssetsDb(appContext, "demo.db", 1)
+        sqlBriteManager.openAssetsDb(appContext, "demo.db", 1)
         loadVersions()
         add.setOnClickListener { _ ->
-            sqliteManager.onInsertRow(Version("LOLLIPOP", 21))
+            sqlBriteManager.onInsertRow(Version("LOLLIPOP", 21))
                 .subscribe {
                     loadVersions()
                 }
         }
         remove.setOnClickListener { _ ->
             index++
-            sqliteManager.onDeleteRow(Version(index - 1L))
+            sqlBriteManager.onDeleteRow(Version(index - 1L))
                 .subscribe {
                     loadVersions()
                 }
@@ -45,7 +45,7 @@ class SqliteActivity : BaseV7Activity() {
 
     @SuppressLint("SetTextI18n")
     private fun loadVersions() {
-        sqliteManager.onSelectTable("SELECT rowid, * from versions")
+        sqlBriteManager.onSelectTable("SELECT rowid, * from versions")
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 val rows = it.getRows(Version::class.java)
@@ -59,6 +59,6 @@ class SqliteActivity : BaseV7Activity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        sqliteManager.closeDb()
+        sqlBriteManager.closeDb()
     }
 }

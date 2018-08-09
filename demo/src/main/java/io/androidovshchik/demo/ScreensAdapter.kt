@@ -12,7 +12,7 @@ import com.github.androidovshchik.support.BaseV7Activity
 import io.androidovshchik.demo.screens.PermissionsActivity
 import io.androidovshchik.demo.screens.ProgressDialogActivity
 import io.androidovshchik.demo.screens.RandomActivity
-import io.androidovshchik.demo.screens.SqliteActivity
+import io.androidovshchik.demo.screens.SQLBriteActivity
 import java.util.*
 
 class ScreensAdapter : RecyclerView.Adapter<ScreensAdapter.ViewHolder>() {
@@ -21,7 +21,7 @@ class ScreensAdapter : RecyclerView.Adapter<ScreensAdapter.ViewHolder>() {
         PermissionsActivity::class.java,
         ProgressDialogActivity::class.java,
         RandomActivity::class.java,
-        SqliteActivity::class.java
+        SQLBriteActivity::class.java
     )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

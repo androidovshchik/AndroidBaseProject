@@ -44,7 +44,7 @@
             android:parentActivityName=".MainActivity">
         </activity>
         <activity
-            android:name=".screens.SqliteActivity"
+            android:name=".screens.SQLBriteActivity"
             android:screenOrientation="sensorPortrait"
             android:launchMode="singleTask"
             android:parentActivityName=".MainActivity">
