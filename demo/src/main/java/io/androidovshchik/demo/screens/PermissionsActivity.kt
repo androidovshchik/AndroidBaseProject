@@ -3,8 +3,9 @@ package io.androidovshchik.demo.screens
 import android.Manifest
 import android.os.Bundle
 import android.widget.Toast
-import com.github.androidovshchik.BaseV7Activity
-import com.github.androidovshchik.utils.*
+import com.github.androidovshchik.core.utils.context.*
+import com.github.androidovshchik.core.utils.requestPermissions
+import com.github.androidovshchik.support.BaseV7Activity
 import io.androidovshchik.demo.R
 import kotlinx.android.synthetic.main.activity_permissions.*
 import timber.log.Timber
@@ -16,7 +17,7 @@ class PermissionsActivity : BaseV7Activity() {
         setContentView(R.layout.activity_permissions)
         title = javaClass.simpleName
         all.setOnClickListener { _ ->
-            request(*allPermissions)
+            requestPermissions(*allAppPermissions)
                 .subscribe({
                     Timber.d("allPermissions isGranted ${it.isGranted}")
                     // it.deniedPermissions is nullable
@@ -29,7 +30,7 @@ class PermissionsActivity : BaseV7Activity() {
                 })
         }
         write.setOnClickListener { _ ->
-            request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            requestPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .subscribe({
                     Timber.d("WRITE_EXTERNAL_STORAGE isGranted ${it.isGranted}")
                     // it.deniedPermissions is nullable
@@ -42,7 +43,7 @@ class PermissionsActivity : BaseV7Activity() {
                 })
         }
         camera.setOnClickListener { _ ->
-            request(Manifest.permission.CAMERA)
+            requestPermissions(Manifest.permission.CAMERA)
                 .subscribe({
                     Timber.d("CAMERA isGranted ${it.isGranted}")
                     // it.deniedPermissions is nullable
@@ -55,7 +56,7 @@ class PermissionsActivity : BaseV7Activity() {
                 })
         }
         areAllGranted.setOnClickListener {
-            Toast.makeText(appContext, "Granted: ${areGranted(*allPermissions)}", Toast.LENGTH_SHORT)
+            Toast.makeText(appContext, "Granted: ${areGranted(*allAppPermissions)}", Toast.LENGTH_SHORT)
                 .show()
         }
         isWriteGranted.setOnClickListener {

@@ -6,9 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.github.androidovshchik.BaseV7Activity
-import com.github.androidovshchik.utils.appContext
-import com.github.androidovshchik.utils.newIntent
+import com.github.androidovshchik.core.utils.context.appContext
+import com.github.androidovshchik.core.utils.context.newIntent
+import com.github.androidovshchik.support.BaseV7Activity
 import io.androidovshchik.demo.screens.PermissionsActivity
 import java.util.*
 

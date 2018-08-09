@@ -14,7 +14,7 @@ import timber.log.Timber
 
 open class BaseApplication : Application() {
 
-    protected open var dialogTheme = R.style.Library_Support_Dialog
+    protected open var dialogTheme = R.style.Library_Dialog
 
     override fun onCreate() {
         super.onCreate()
@@ -22,14 +22,9 @@ open class BaseApplication : Application() {
             return
         }
         if (isDebug()) {
-            initDebug()
+            Timber.plant(Timber.DebugTree())
+            initACRA(R.style.LibraryTheme_Dialog)
         }
         Timber.d(TextUtils.join(newLine(), preferences.getAllSorted()))
-    }
-
-    open fun initDebug() {
-        Timber.plant(Timber.DebugTree())
-        //Stetho.initializeWithDefaults(appContext)
-        initACRA(R.style.LibraryTheme_Dialog)
     }
 }

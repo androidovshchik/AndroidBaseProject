@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Library.Dialog" parent="android:Theme.Holo.Light.Dialog">
+    <style name="Library.Dialog" parent="android:Theme.Material.Light.Dialog">
         <item name="android:padding">4dp</item>
         <item name="android:textSize">17sp</item>
         <item name="android:textColor">@color/colorDialogText</item>

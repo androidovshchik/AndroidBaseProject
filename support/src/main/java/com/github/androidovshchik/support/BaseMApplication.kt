@@ -8,6 +8,8 @@ import com.github.androidovshchik.core.BaseApplication
 
 open class BaseMApplication : BaseApplication() {
 
+    override var dialogTheme = R.style.Library_Support_Dialog
+
     override fun attachBaseContext(context: Context) {
         super.attachBaseContext(context)
         MultiDex.install(this)

@@ -1,15 +1,9 @@
 package com.github.androidovshchik.support
 
-import android.support.v7.app.AppCompatActivity
-import io.reactivex.disposables.CompositeDisposable
+import com.github.androidovshchik.core.BaseActivity
 
 @Suppress("MemberVisibilityCanBePrivate")
-open class BaseV7Activity : AppCompatActivity() {
+open class BaseV7Activity : BaseActivity() {
 
-    protected val disposable = CompositeDisposable()
 
-    override fun onDestroy() {
-        super.onDestroy()
-        disposable.dispose()
-    }
 }

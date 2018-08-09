@@ -3,8 +3,8 @@ package io.androidovshchik.demo
 import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
-import com.github.androidovshchik.BaseV7Activity
-import com.github.androidovshchik.utils.appContext
+import com.github.androidovshchik.core.utils.context.appContext
+import com.github.androidovshchik.support.BaseV7Activity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseV7Activity() {
