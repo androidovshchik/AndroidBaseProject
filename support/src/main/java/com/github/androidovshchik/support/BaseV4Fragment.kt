@@ -1,6 +1,6 @@
 @file:Suppress("DEPRECATION", "MemberVisibilityCanBePrivate")
 
-package com.github.androidovshchik.core
+package com.github.androidovshchik.support
 
 import android.os.Bundle
 import android.support.v4.app.Fragment

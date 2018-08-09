@@ -1,4 +1,4 @@
-package com.github.androidovshchik.core
+package com.github.androidovshchik.support
 
 import android.content.ComponentName
 import android.content.Context

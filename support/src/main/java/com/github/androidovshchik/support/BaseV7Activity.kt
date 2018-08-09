@@ -1,4 +1,4 @@
-package com.github.androidovshchik.core
+package com.github.androidovshchik.support
 
 import android.support.v7.app.AppCompatActivity
 import io.reactivex.disposables.CompositeDisposable

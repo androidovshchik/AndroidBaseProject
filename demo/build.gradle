@@ -26,7 +26,9 @@ android {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    //implementation project(':base')
+    implementation project(':core')
+    implementation project(':support')
+    implementation project(':sqlite')
     implementation 'com.android.support:appcompat-v7:28.0.0-beta01'
     implementation 'com.android.support:recyclerview-v7:28.0.0-beta01'
     implementation 'gun0912.ted:tedpermission-rx2:2.2.0'
