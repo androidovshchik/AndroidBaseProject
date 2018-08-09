@@ -16,9 +16,9 @@
 
 [support module short][51]
 
-[sqlite module][3]
+[sqlbite module][3]
 
-[sqlite module short][52]
+[sqlbite module short][52]
 
 ## Download
 
@@ -38,7 +38,7 @@ and:
 dependencies {
     implementation 'com.github.androidovshchik.AndroidBaseProject:core:LATEST_VERSION'
     implementation 'com.github.androidovshchik.AndroidBaseProject:support:LATEST_VERSION'
-    implementation 'com.github.androidovshchik.AndroidBaseProject:sqlite:LATEST_VERSION'
+    implementation 'com.github.androidovshchik.AndroidBaseProject:sqlbite:LATEST_VERSION'
 }
 ```
 
