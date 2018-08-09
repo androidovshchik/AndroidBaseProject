@@ -10,12 +10,14 @@ import com.github.androidovshchik.core.utils.context.appContext
 import com.github.androidovshchik.core.utils.context.newIntent
 import com.github.androidovshchik.support.BaseV7Activity
 import io.androidovshchik.demo.screens.PermissionsActivity
+import io.androidovshchik.demo.screens.ProgressDialogActivity
 import java.util.*
 
 class ScreensAdapter : RecyclerView.Adapter<ScreensAdapter.ViewHolder>() {
 
     var screens: ArrayList<Class<out BaseV7Activity>> = arrayListOf(
-        PermissionsActivity::class.java
+        PermissionsActivity::class.java,
+        ProgressDialogActivity::class.java
     )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

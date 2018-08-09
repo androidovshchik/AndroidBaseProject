@@ -31,6 +31,18 @@
             android:launchMode="singleTask"
             android:parentActivityName=".MainActivity">
         </activity>
+        <activity
+            android:name=".screens.ProgressDialogActivity"
+            android:screenOrientation="sensorPortrait"
+            android:launchMode="singleTask"
+            android:parentActivityName=".MainActivity">
+        </activity>
+        <activity
+            android:name=".screens.RandomActivity"
+            android:screenOrientation="sensorPortrait"
+            android:launchMode="singleTask"
+            android:parentActivityName=".MainActivity">
+        </activity>
     </application>
 
 </manifest>
