@@ -11,7 +11,18 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
         classpath 'org.jetbrains.dokka:dokka-android-gradle-plugin:0.9.17'
+        classpath 'com.vanniktech:gradle-dependency-graph-generator-plugin:0.5.0'
     }
+}
+
+import com.vanniktech.dependency.graph.generator.DependencyGraphGeneratorPlugin
+import com.vanniktech.dependency.graph.generator.DependencyGraphGeneratorExtension.Generator
+
+plugins.apply(DependencyGraphGeneratorPlugin)
+
+// ./gradlew generateDependencyGraph
+dependencyGraphGenerator {
+    generators = [ Generator.ALL ]
 }
 
 allprojects {
