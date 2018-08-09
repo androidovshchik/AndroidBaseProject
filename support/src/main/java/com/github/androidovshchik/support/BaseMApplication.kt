@@ -1,11 +1,11 @@
 @file:Suppress("unused")
 
-package com.github.androidovshchik.core
+package com.github.androidovshchik.support
 
 import android.content.Context
 import android.support.multidex.MultiDex
+import com.github.androidovshchik.core.BaseApplication
 
-@Suppress("MemberVisibilityCanBePrivate", "NON_EXHAUSTIVE_WHEN")
 open class BaseMApplication : BaseApplication() {
 
     override fun attachBaseContext(context: Context) {

@@ -5,9 +5,9 @@ import android.app.Service
 import android.content.Intent
 import android.os.IBinder
 import android.os.PowerManager
-import com.github.androidovshchik.receivers.ToastTrigger
-import com.github.androidovshchik.utils.newWakeLock
-import com.github.androidovshchik.utils.powerManager
+import com.github.androidovshchik.core.receivers.ToastTrigger
+import com.github.androidovshchik.core.utils.context.newIntent
+import com.github.androidovshchik.core.utils.context.newWakeLock
 import io.reactivex.disposables.CompositeDisposable
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
@@ -23,7 +23,7 @@ open class BaseService : Service() {
 
     @SuppressLint("WakelockTimeout")
     protected fun acquireWakeLock() {
-        wakeLock = powerManager.newWakeLock(getString(R.string.library_name))
+        wakeLock = newWakeLock(javaClass.simpleName)
     }
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
@@ -31,9 +31,9 @@ open class BaseService : Service() {
     }
 
     protected fun showToast(message: String) {
-        val intent = Intent(applicationContext, ToastTrigger::class.java)
-        intent.putExtra(ToastTrigger.EXTRA_MESSAGE, message)
-        sendBroadcast(intent)
+        sendBroadcast(newIntent(ToastTrigger::class.java).apply {
+            putExtra(ToastTrigger.EXTRA_MESSAGE, message)
+        })
     }
 
     protected fun stopWork() {

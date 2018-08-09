@@ -21,7 +21,7 @@ open class SqliteManager {
 
     fun openAssetsDb(context: Context, dbName: String, version: Int) {
         closeDb()
-        val dbCallback = SqliteCallback(version, dbName)
+        val dbCallback = SqliteOpenHelper(version, dbName)
         dbCallback.openAssetsDatabase(context)
         db = SqlBrite.Builder()
             .build()

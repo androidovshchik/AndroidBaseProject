@@ -19,6 +19,6 @@ abstract class BaseBService : BaseService() {
     @Suppress("unused")
     inner class BaseBinder : Binder() {
 
-        internal val service: BaseBService get() = this@BaseBService
+        val service: BaseBService get() = this@BaseBService
     }
 }
