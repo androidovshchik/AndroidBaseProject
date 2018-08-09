@@ -11,12 +11,12 @@ apply plugin: 'org.jetbrains.dokka-android'
 group = 'com.github.androidovshchik'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion project.compileSdkVersion.toInteger()
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 28
-        versionCode 26
-        versionName "3.0.0"
+        minSdkVersion project.minSdkVersion.toInteger()
+        targetSdkVersion project.targetSdkVersion.toInteger()
+        versionCode project.versionCode.toInteger()
+        versionName project.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
