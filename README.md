@@ -9,13 +9,20 @@
 ## Documentation
 
 [core module][1]
+
 [core module short][50]
+
 [support module][2]
+
 [support module short][51]
+
 [sqlite module][3]
+
 [sqlite module short][52]
 
-Add it to your build.gradle with:
+## Download
+
+Add to your build.gradle:
 ```gradle
 allprojects {
     repositories {
