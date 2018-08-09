@@ -1,50 +1,90 @@
 package com.github.androidovshchik.support
 
-import android.content.ComponentName
-import android.content.Context
-import android.content.ServiceConnection
-import android.os.IBinder
+import android.content.res.Configuration
+import android.os.Bundle
+import android.support.annotation.LayoutRes
+import android.support.v7.app.ActionBar
+import android.support.v7.app.AppCompatDelegate
+import android.view.MenuInflater
+import android.view.View
+import android.view.ViewGroup
+import com.github.androidovshchik.core.BaseBActivity
 import com.github.androidovshchik.core.BaseBService
-import com.github.androidovshchik.core.utils.context.*
 
 @Suppress("MemberVisibilityCanBePrivate")
-abstract class BaseV7BActivity<S : BaseBService> : BaseV7Activity() {
+abstract class BaseV7BActivity<S : BaseBService> : BaseBActivity<S>() {
 
-    abstract val serviceClass: Class<out BaseBService>?
+    private var delegate: AppCompatDelegate? = null
 
-    abstract val foreground: Boolean
+    override fun onCreate(savedInstanceState: Bundle?) {
+        getDelegate().installViewFactory()
+        getDelegate().onCreate(savedInstanceState)
+        super.onCreate(savedInstanceState)
+    }
 
-    var service: S? = null
+    override fun onPostCreate(savedInstanceState: Bundle?) {
+        super.onPostCreate(savedInstanceState)
+        getDelegate().onPostCreate(savedInstanceState)
+    }
 
-    override fun onStart() {
-        super.onStart()
-        if (serviceClass != null) {
-            if (foreground) {
-                forceRestartForegroundService(serviceClass!!)
-            } else {
-                forceRestartService(serviceClass!!)
-            }
-            bindService(newIntent(serviceClass!!), serviceConnection, Context.BIND_AUTO_CREATE)
-        }
+    override fun onPostResume() {
+        super.onPostResume()
+        getDelegate().onPostResume()
+    }
+
+    override fun setContentView(@LayoutRes layoutResID: Int) {
+        getDelegate().setContentView(layoutResID)
+    }
+
+    override fun setContentView(view: View) {
+        getDelegate().setContentView(view)
+    }
+
+    override fun setContentView(view: View, params: ViewGroup.LayoutParams) {
+        getDelegate().setContentView(view, params)
+    }
+
+    override fun addContentView(view: View, params: ViewGroup.LayoutParams) {
+        getDelegate().addContentView(view, params)
+    }
+
+    override fun onTitleChanged(title: CharSequence, color: Int) {
+        super.onTitleChanged(title, color)
+        getDelegate().setTitle(title)
+    }
+
+    @Suppress("unused")
+    fun getSupportActionBar(): ActionBar? {
+        return getDelegate().supportActionBar
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        getDelegate().onConfigurationChanged(newConfig)
+    }
+
+    override fun getMenuInflater(): MenuInflater {
+        return getDelegate().menuInflater
+    }
+
+    override fun invalidateOptionsMenu() {
+        getDelegate().invalidateOptionsMenu()
     }
 
     override fun onStop() {
         super.onStop()
-        if (service != null) {
-            unbindService(serviceConnection)
-            stopService(serviceClass!!)
-        }
+        getDelegate().onStop()
     }
 
-    private val serviceConnection = object : ServiceConnection {
+    override fun onDestroy() {
+        super.onDestroy()
+        getDelegate().onDestroy()
+    }
 
-        override fun onServiceDisconnected(name: ComponentName) {
-            service = null
+    private fun getDelegate(): AppCompatDelegate {
+        if (delegate == null) {
+            delegate = AppCompatDelegate.create(this, null)
         }
-
-        @Suppress("UNCHECKED_CAST")
-        override fun onServiceConnected(name: ComponentName, binder: IBinder) {
-            service = (binder as BaseBService.BaseBinder).service as S
-        }
+        return delegate!!
     }
 }

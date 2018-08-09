@@ -23,7 +23,7 @@ open class BaseApplication : Application() {
         }
         if (isDebug()) {
             Timber.plant(Timber.DebugTree())
-            initACRA(R.style.LibraryTheme_Dialog)
+            initACRA(dialogTheme)
         }
         Timber.d(TextUtils.join(newLine(), preferences.getAllSorted()))
     }

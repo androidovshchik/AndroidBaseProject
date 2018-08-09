@@ -3,6 +3,7 @@
 package com.github.androidovshchik.core.utils.context
 
 import android.app.*
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
@@ -43,6 +44,10 @@ fun Context.isServiceRunning(serviceClass: Class<out Service>): Boolean {
 
 fun Context.newWakeLock(name: String): PowerManager.WakeLock {
     return powerManager.newWakeLock(name)
+}
+
+fun Context.cancelAlarm(receiverClass: Class<out BroadcastReceiver>) {
+    alarmManager.cancel(newPendingReceiver(receiverClass))
 }
 
 fun Context.getImei(): String? {

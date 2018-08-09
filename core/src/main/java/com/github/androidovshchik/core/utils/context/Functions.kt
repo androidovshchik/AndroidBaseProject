@@ -85,10 +85,6 @@ fun Context.nextAlarm(interval: Int, receiverClass: Class<out BroadcastReceiver>
     }
 }
 
-fun Context.cancelAlarm(receiverClass: Class<out BroadcastReceiver>) {
-    alarmManager.cancel(newPendingReceiver(receiverClass))
-}
-
 fun Context.isDebug(): Boolean {
     try {
         return Class.forName("$packageName.BuildConfig")
