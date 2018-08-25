@@ -15,9 +15,7 @@ import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import com.github.androidovshchik.core.utils.*
 
-val Context.appContext: Context get() = applicationContext
-
-val Context.preferences: SharedPreferences get() = PreferenceManager.getDefaultSharedPreferences(appContext)
+val Context.sharedPreferences: SharedPreferences get() = PreferenceManager.getDefaultSharedPreferences(applicationContext)
 
 val Context.activityManager: ActivityManager get() = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
 
@@ -50,18 +48,6 @@ fun Context.cancelAlarm(receiverClass: Class<out BroadcastReceiver>) {
     alarmManager.cancel(newPendingReceiver(receiverClass))
 }
 
-fun Context.getImei(): String? {
-    return telephonyManager.readImei()
-}
-
-fun Context.getWindowSize(): Point {
-    return windowManager.getWindowSize()
-}
-
-fun Context.getScreenSize(): Point {
-    return windowManager.getScreenSize()
-}
-
 fun Context.createSilentChannel() {
     notificationManager.createSilentChannel()
 }
@@ -76,6 +62,18 @@ fun Context.showKeyboard() {
 
 fun Context.hideKeyboard() {
     inputMethodManager.hideKeyboard()
+}
+
+fun Context.getIMEI(): String? {
+    return telephonyManager.readIMEI()
+}
+
+fun Context.getWindowSize(): Point {
+    return windowManager.getWindowSize()
+}
+
+fun Context.getScreenSize(): Point {
+    return windowManager.getScreenSize()
 }
 
 fun Context.killCall() {
