@@ -6,20 +6,6 @@
     <img src="https://img.shields.io/badge/paypal-donate-green.svg" alt="PayPal donate button"/>
 </a>
 
-## Documentation
-
-[core module][1]
-
-[core module short][50]
-
-[support module][2]
-
-[support module short][51]
-
-[sqlbrite module][3]
-
-[sqlbrite module short][52]
-
 ## Download
 
 Add to your build.gradle:
