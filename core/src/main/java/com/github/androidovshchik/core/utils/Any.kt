@@ -8,7 +8,7 @@ import java.io.File
 val sep: String get() = File.separator
 
 fun newLine(): String {
-    return System.getProperty("line.separator")
+    return System.getProperty("line.separator")?: "\n"
 }
 
 fun dp2px(dp: Float): Int {
