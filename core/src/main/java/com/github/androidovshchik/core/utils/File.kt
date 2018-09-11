@@ -17,6 +17,16 @@ fun File.copyFromAssets(context: Context, name: String) {
     }
 }
 
+fun File.copyFromRaw(context: Context, id: Int) {
+    val input = context.resources.openRawResource(id)
+    val output = FileOutputStream(this)
+    input.use { _ ->
+        output.use { _ ->
+            input.copyTo(output)
+        }
+    }
+}
+
 fun File.download(link: String) {
     val input = URL(link).openStream()
     val output = FileOutputStream(this)
