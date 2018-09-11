@@ -47,6 +47,7 @@ dependencies {
 
 dokka {
     outputFormat = 'html'
+    //noinspection GroovyAccessibility
     outputDirectory = "$buildDir/kdoc"
 }
 
@@ -57,6 +58,7 @@ task packageSources(type: Jar) {
 
 task dokkaJavadoc(type: org.jetbrains.dokka.gradle.DokkaAndroidTask) {
     outputFormat = 'javadoc'
+    //noinspection GroovyAccessibility
     outputDirectory = "$buildDir/javadoc"
 }
 

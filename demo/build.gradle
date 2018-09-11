@@ -16,9 +16,7 @@ android {
     }
     buildTypes {
         release {
-            shrinkResources true
-            minifyEnabled true
-            useProguard true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -29,8 +27,8 @@ dependencies {
     implementation project(':core')
     implementation project(':support')
     implementation project(':sqlbrite')
-    implementation 'com.android.support:appcompat-v7:28.0.0-beta01'
-    implementation 'com.android.support:recyclerview-v7:28.0.0-beta01'
+    implementation 'com.android.support:appcompat-v7:28.0.0-rc02'
+    implementation 'com.android.support:recyclerview-v7:28.0.0-rc02'
     implementation 'gun0912.ted:tedpermission-rx2:2.2.0'
     implementation 'com.jakewharton.timber:timber:4.7.0'
     implementation 'com.google.code.gson:gson:2.8.5'
@@ -46,7 +44,7 @@ configurations.all {
         def requested = details.requested
         if (requested.group == 'com.android.support') {
             if (!requested.name.startsWith("multidex")) {
-                details.useVersion '28.0.0-beta01'
+                details.useVersion '28.0.0-rc02'
             }
         }
     }
