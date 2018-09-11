@@ -14,7 +14,7 @@ open class SQLBriteHelper(version: Int, private val dbName: String) : SupportSQL
 
     override fun onUpgrade(db: SupportSQLiteDatabase, oldVersion: Int, newVersion: Int) {}
 
-    open fun openAssetsDatabase(context: Context) {
+    open fun openAssetsDb(context: Context) {
         val file = context.getDatabasePath(dbName)
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             val path = File("${context.applicationInfo.dataDir}${sep}databases$sep")

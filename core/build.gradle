@@ -35,8 +35,9 @@ android {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'gun0912.ted:tedpermission-rx2:2.2.0'
-    implementation 'com.snatik:storage:2.1.0'
+    implementation 'com.github.yandextaxitech:binaryprefs:1.0.0'
     implementation 'com.jakewharton.timber:timber:4.7.0'
+    implementation 'com.snatik:storage:2.1.0'
     implementation 'ch.acra:acra:4.9.2'
     implementation "io.reactivex.rxjava2:rxandroid:$rx_android"
     implementation "io.reactivex.rxjava2:rxjava:$rx_java"
@@ -47,6 +48,7 @@ dependencies {
 
 dokka {
     outputFormat = 'html'
+    //noinspection GroovyAccessibility
     outputDirectory = "$buildDir/kdoc"
 }
 
@@ -57,6 +59,7 @@ task packageSources(type: Jar) {
 
 task dokkaJavadoc(type: org.jetbrains.dokka.gradle.DokkaAndroidTask) {
     outputFormat = 'javadoc'
+    //noinspection GroovyAccessibility
     outputDirectory = "$buildDir/javadoc"
 }
 

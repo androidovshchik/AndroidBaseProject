@@ -15,21 +15,20 @@ import io.reactivex.ObservableEmitter
 import io.reactivex.ObservableOnSubscribe
 import io.reactivex.schedulers.Schedulers
 
-open class SQLBriteManager {
+open class SQLBriteManager<H : SQLBriteHelper> {
 
     var db: BriteDatabase? = null
 
-    fun openAssetsDb(context: Context, dbName: String, version: Int) {
+    fun openAssetsDb(context: Context, dbName: String, helper: H) {
         closeDb()
-        val dbCallback = SQLBriteHelper(version, dbName)
-        dbCallback.openAssetsDatabase(context)
+        helper.openAssetsDb(context)
         db = SqlBrite.Builder()
             .build()
             .wrapDatabaseHelper(FrameworkSQLiteOpenHelperFactory()
                 .create(SupportSQLiteOpenHelper.Configuration
                     .builder(context)
                     .name(dbName)
-                    .callback(dbCallback)
+                    .callback(helper)
                     .build()), Schedulers.io())
     }
 
