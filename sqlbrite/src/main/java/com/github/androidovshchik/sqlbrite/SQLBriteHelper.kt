@@ -8,7 +8,7 @@ import com.github.androidovshchik.core.utils.copyFromAssets
 import com.github.androidovshchik.core.utils.sep
 import java.io.File
 
-open class SQLBriteHelper(version: Int, private val dbName: String) : SupportSQLiteOpenHelper.Callback(version) {
+open class SQLBriteHelper(version: Int, val dbName: String) : SupportSQLiteOpenHelper.Callback(version) {
 
     override fun onCreate(db: SupportSQLiteDatabase) {}
 

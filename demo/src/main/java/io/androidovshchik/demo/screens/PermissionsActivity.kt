@@ -55,7 +55,7 @@ class PermissionsActivity : BaseV7Activity() {
     }
 
     private fun showFastToast(message: String) {
-        val toast = Toast.makeText(appContext, message, Toast.LENGTH_SHORT)
+        val toast = Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT)
         toast.show()
         Handler().postDelayed({
             toast.cancel()

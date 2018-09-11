@@ -4,9 +4,9 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.ServiceConnection
 import android.os.IBinder
-import com.github.androidovshchik.core.utils.context.forceRestartForegroundService
-import com.github.androidovshchik.core.utils.context.forceRestartService
 import com.github.androidovshchik.core.utils.context.newIntent
+import com.github.androidovshchik.core.utils.context.restartForegroundService
+import com.github.androidovshchik.core.utils.context.restartService
 import com.github.androidovshchik.core.utils.context.stopService
 
 @Suppress("MemberVisibilityCanBePrivate")
@@ -22,9 +22,9 @@ abstract class BaseBActivity<S : BaseBService> : BaseActivity() {
         super.onStart()
         if (serviceClass != null) {
             if (foreground) {
-                forceRestartForegroundService(serviceClass!!)
+                restartForegroundService(serviceClass!!)
             } else {
-                forceRestartService(serviceClass!!)
+                restartService(serviceClass!!)
             }
             bindService(newIntent(serviceClass!!), serviceConnection, Context.BIND_AUTO_CREATE)
         }

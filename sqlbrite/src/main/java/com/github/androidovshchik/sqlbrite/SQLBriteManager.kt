@@ -19,7 +19,7 @@ open class SQLBriteManager<H : SQLBriteHelper> {
 
     var db: BriteDatabase? = null
 
-    fun openAssetsDb(context: Context, dbName: String, helper: H) {
+    fun openAssetsDb(context: Context, helper: H) {
         closeDb()
         helper.openAssetsDb(context)
         db = SqlBrite.Builder()
@@ -27,7 +27,7 @@ open class SQLBriteManager<H : SQLBriteHelper> {
             .wrapDatabaseHelper(FrameworkSQLiteOpenHelperFactory()
                 .create(SupportSQLiteOpenHelper.Configuration
                     .builder(context)
-                    .name(dbName)
+                    .name(helper.dbName)
                     .callback(helper)
                     .build()), Schedulers.io())
     }

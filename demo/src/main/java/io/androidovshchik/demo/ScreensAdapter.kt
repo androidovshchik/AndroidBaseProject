@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.github.androidovshchik.core.utils.context.appContext
 import com.github.androidovshchik.core.utils.context.newIntent
 import com.github.androidovshchik.support.BaseV7Activity
 import io.androidovshchik.demo.screens.PermissionsActivity
@@ -49,7 +48,7 @@ class ScreensAdapter : RecyclerView.Adapter<ScreensAdapter.ViewHolder>() {
 
         init {
             itemView.setOnClickListener {
-                val context = itemView.context.appContext
+                val context = itemView.context.applicationContext
                 val intent = context.newIntent(screens[adapterPosition])
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 context.startActivity(intent)

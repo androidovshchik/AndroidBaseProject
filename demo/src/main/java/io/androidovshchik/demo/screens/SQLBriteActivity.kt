@@ -2,7 +2,7 @@ package io.androidovshchik.demo.screens
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import com.github.androidovshchik.core.utils.context.appContext
+import com.github.androidovshchik.sqlbrite.SQLBriteHelper
 import com.github.androidovshchik.sqlbrite.SQLBriteManager
 import com.github.androidovshchik.sqlbrite.utils.getRows
 import com.github.androidovshchik.support.BaseV7Activity
@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_sqlite.*
 
 class SQLBriteActivity : BaseV7Activity() {
 
-    private val sqlBriteManager = SQLBriteManager()
+    private val sqlBriteManager = SQLBriteManager<SQLBriteHelper>()
 
     private val gson = GsonBuilder()
         .setPrettyPrinting()
@@ -26,7 +26,7 @@ class SQLBriteActivity : BaseV7Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sqlite)
         title = javaClass.simpleName
-        sqlBriteManager.openAssetsDb(appContext, "demo.db", 1)
+        sqlBriteManager.openAssetsDb(applicationContext, SQLBriteHelper(1, "demo.db"))
         loadVersions()
         add.setOnClickListener { _ ->
             sqlBriteManager.onInsertRow(Version("LOLLIPOP", 21))
@@ -45,7 +45,7 @@ class SQLBriteActivity : BaseV7Activity() {
 
     @SuppressLint("SetTextI18n")
     private fun loadVersions() {
-        sqlBriteManager.onSelectTable("SELECT rowid, * from versions")
+        disposable.add(sqlBriteManager.onSelectTable("SELECT rowid, * from versions")
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 val rows = it.getRows(Version::class.java)
@@ -54,7 +54,7 @@ class SQLBriteActivity : BaseV7Activity() {
                     index = 1
                 }
                 remove.text = "remove at $index"
-            }
+            })
     }
 
     override fun onDestroy() {
