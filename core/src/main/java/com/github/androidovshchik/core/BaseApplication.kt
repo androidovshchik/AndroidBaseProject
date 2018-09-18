@@ -3,25 +3,30 @@
 package com.github.androidovshchik.core
 
 import android.app.Application
-import com.github.androidovshchik.core.utils.context.isDebug
-import com.github.androidovshchik.core.utils.initACRA
-import org.acra.ACRA
+import android.support.annotation.StyleRes
+import com.github.androidovshchik.core.utils.setupACRA
 import timber.log.Timber
 
+@Suppress("MemberVisibilityCanBePrivate")
 open class BaseApplication : Application() {
 
-    protected open var dialogTheme = R.style.Library_Dialog
+    protected open fun initTimber() {
+        initTimber(Timber.DebugTree())
+    }
 
-    protected open var replyEmail = "vladkalyuzhnyu@gmail.com"
+    protected open fun initACRA() {
+        initACRA(R.style.Library_Dialog, "vladkalyuzhnyu@gmail.com")
+    }
 
-    override fun onCreate() {
-        super.onCreate()
-        if (ACRA.isACRASenderServiceProcess()) {
-            return
-        }
-        if (isDebug()) {
-            Timber.plant(Timber.DebugTree())
-            initACRA(dialogTheme, replyEmail)
-        }
+    protected open fun initACRA(replyEmail: String) {
+        initACRA(R.style.Library_Dialog, replyEmail)
+    }
+
+    protected fun initTimber(tree: Timber.Tree) {
+        Timber.plant(tree)
+    }
+
+    protected fun initACRA(@StyleRes dialogTheme: Int, replyEmail: String) {
+        setupACRA(dialogTheme, replyEmail)
     }
 }
