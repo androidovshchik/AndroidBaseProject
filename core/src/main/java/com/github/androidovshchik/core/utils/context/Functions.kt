@@ -81,17 +81,6 @@ fun Context.nextAlarm(interval: Int, receiverClass: Class<out BroadcastReceiver>
     }
 }
 
-fun Context.isDebug(): Boolean {
-    return try {
-        Class.forName("$packageName.BuildConfig")
-            .getField("DEBUG")
-            .get(null) as Boolean
-    } catch (e: Exception) {
-        Timber.e(e)
-        true
-    }
-}
-
 @SuppressLint("MissingPermission")
 fun Context.makeCall(number: String) {
     try {

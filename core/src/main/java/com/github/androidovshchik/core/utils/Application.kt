@@ -10,7 +10,7 @@ import org.acra.ReportField
 import org.acra.ReportingInteractionMode
 import org.acra.config.ConfigurationBuilder
 
-fun Application.initACRA(@StyleRes theme: Int, replyEmail: String) {
+fun Application.setupACRA(@StyleRes theme: Int, replyEmail: String) {
     ACRA.init(this, ConfigurationBuilder(this)
         .setMailTo(replyEmail)
         .setReportingInteractionMode(ReportingInteractionMode.DIALOG)
